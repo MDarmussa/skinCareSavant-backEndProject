@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
-require('dotenv').config();
-const {User} = require('../models');
+const bcrypt = require('bcrypt');
+require('dotenv').config()
+const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
+const {User} = require('../models'); 
+const jwt = require('jsonwebtoken');
+
 
 
 
