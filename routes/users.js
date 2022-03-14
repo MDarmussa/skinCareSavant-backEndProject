@@ -51,6 +51,7 @@ router.post('/login', async (req, res, next) => {
      );
      res.cookie("token", token)
      res.redirect(`/profile/${user.id}`);
+    // res.send('your username and password are correct')
    } else {
      res.send('sorry wrong password')
    }
