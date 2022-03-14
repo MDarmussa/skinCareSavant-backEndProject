@@ -10,6 +10,20 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/* POST users Register. */
+router.post('/register', async (req, res, next) => {
+  let { name, username, password, email} = req.body;
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+  console.log(username, password);
+
+  const newUser = await User.create({
+    name,
+    username,
+    password: hashedPassword,
+    email
+  });
+  res.redirect('/newUserForm');
+});
 
 
 
