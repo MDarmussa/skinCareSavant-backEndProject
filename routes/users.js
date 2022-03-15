@@ -3,10 +3,10 @@ var router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const Sequelize = require('sequelize');
-const { User } = require('../models');
+const { User, Comments } = require('../models');
+
 const db = require("../models");
 const jwt = require('jsonwebtoken');
-const { user } = require('pg/lib/defaults');
 
 
 
@@ -66,6 +66,17 @@ router.post('/login', async (req, res, next) => {
 });
 
 
+//post a comment
+router.post('/comment', async (req, res, next) => {
+  let { name, title} = req.body;
+  console.log(name, title);
+
+  const newUser = await Comments.create({
+    name,
+    title
+  });
+  res.json(newUser);
+});
 
 
 
