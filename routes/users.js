@@ -8,6 +8,9 @@ const db = require("../models");
 const jwt = require('jsonwebtoken');
 const { user } = require('pg/lib/defaults');
 
+require('dotenv').config();
+
+
 
 
 
