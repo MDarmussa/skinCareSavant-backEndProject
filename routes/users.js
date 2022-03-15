@@ -6,6 +6,10 @@ const Sequelize = require('sequelize');
 const { User } = require('../models');
 const db = require("../models");
 const jwt = require('jsonwebtoken');
+const { user } = require('pg/lib/defaults');
+require('dotenv').config();
+
+
 
 
 /* GET users listing. */
@@ -30,36 +34,38 @@ router.post('/register', async (req, res, next) => {
 
 
 
+//post user login 
+
 router.post('/login', async (req, res, next) => {
-  const {username, password} = req.body
+  let { username, password} = req.body;
 
-  const user = await User.findOne({  // to find a user
-   where:{
-     username: username
-   }
-  }); 
-  if (user){
-    //takes our user input password from req.body , users bcrypt to hash it and checks that hash is the same as the already hashed password in our DB 
-   const comparePass = bcrypt.compareSync(password, user.password) //check the password 
-   if(comparePass === true) {
-     const token = jwt.sign(
-       {
-         data: user.username,
-       },
-       process.env.SECRET_KEY,
-       {expiresIn: "1h"}
-     );
-     res.cookie("token", token)
-     res.redirect(`/profile/${user.id}`);
-   } else {
-     res.send('sorry wrong password')
-   }
+  const newUser = await User.findOne({
+    where:{
+      username: username
+    } 
+  });
+  if (newUser){
+    const comparePass = bcrypt.compareSync(password, newUser.password)
+    if (comparePass === true) {
+      const token = jwt.sign(
+        {
+          data: newUser.username,
+        },
+        process.env.SECRET_KEY,
+        {expiresIn: "1h"}
+      );
+      res.cookie("token", token)
+      res.redirect(`/profile/${newUser.id}`);
 
+    } else {
+      res.send('wrong pass')
+    }
 
   } else {
-    res.send("sorry, no user found");
+    res.send("sorry, no user found")
   }
-  });       
+});
+
 
 
 
