@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
-require('dotenv').config();
-const {User} = require('../models');
-
+const bcrypt = require("bcrypt");
+const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
+const Sequelize = require('sequelize');
+const { User } = require('../models');
+const db = require("../models");
+const jwt = require('jsonwebtoken');
 
 
 /* GET users listing. */
@@ -22,7 +25,7 @@ router.post('/register', async (req, res, next) => {
     password: hashedPassword,
     email
   });
-  res.redirect('/newUserForm');
+  res.json(newUser);
 });
 
 
