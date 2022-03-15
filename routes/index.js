@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const axios = require("axios").default;
 const router = express.Router();
 require('dotenv').config();
@@ -17,13 +18,6 @@ router.get('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
-
-
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Express' });
-});
-
-
 
 router.get('/profile/:id', isValidToken, async function(req, res, next) {
   const {id} = req.params;

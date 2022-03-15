@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const Sequelize = require('sequelize');
 const { User } = require('../models');
-const db = require("../models");
 const jwt = require('jsonwebtoken');
-const { user } = require('pg/lib/defaults');
 require('dotenv').config();
 
 
@@ -32,10 +30,7 @@ router.post('/register', async (req, res, next) => {
   res.json(newUser);
 });
 
-
-
 //post user login 
-
 router.post('/login', async (req, res, next) => {
   let { username, password} = req.body;
 
@@ -64,6 +59,7 @@ router.post('/login', async (req, res, next) => {
   } else {
     res.send("sorry, no user found")
   }
+  res.render('profile')
 });
 
 
