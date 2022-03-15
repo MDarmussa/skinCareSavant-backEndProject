@@ -27,30 +27,30 @@ router.post('/register', async (req, res, next) => {
     password: hashedPassword,
     email
   });
-  res.json(newUser);
+  res.json('/login');
 });
 
 //post user login 
 router.post('/login', async (req, res, next) => {
   let { username, password} = req.body;
 
-  const newUser = await User.findOne({
+  const user = await User.findOne({
     where:{
       username: username
     } 
   });
-  if (newUser){
-    const comparePass = bcrypt.compareSync(password, newUser.password)
+  if (user){
+    const comparePass = bcrypt.compareSync(password, user.password)
     if (comparePass === true) {
       const token = jwt.sign(
         {
-          data: newUser.username,
+          data: user.username,
         },
         process.env.SECRET_KEY,
         {expiresIn: "1h"}
       );
       res.cookie("token", token)
-      res.redirect(`/profile/${newUser.id}`);
+      res.redirect(`/profile/${user.id}`);
 
     } else {
       res.send('wrong pass')
@@ -59,9 +59,18 @@ router.post('/login', async (req, res, next) => {
   } else {
     res.send("sorry, no user found")
   }
-  res.render('profile')
 });
 
+router.post('/profile', async (req, res) => {
+  const {q1, q2, q3} = req.body;
+  const userdata = await Profile.create({
+    q1: q1,
+    q2: q2,
+    q3: q3
+  })
+
+  res.send(userdata);
+})
 
 
 
