@@ -1,13 +1,14 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const axios = require("axios").default;
 const router = express.Router();
-require('dotenv').config();
-const isValidToken = require('../middleware/isValidToken')
 const { User, Comments, Quiz, product } = require('../models');
-const comments = require('../models/comments');
-const { use } = require('./users');
+const isValidToken = require('../middleware/isValidToken')
+require('dotenv').config();
 const Sequelize = require('sequelize');
+
+// const jwt = require('jsonwebtoken');
+// const axios = require("axios").default;
+// const comments = require('../models/comments');
+// const { use } = require('./users');
 
 
 /* GET home page. */
