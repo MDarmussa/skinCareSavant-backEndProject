@@ -1,70 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/profile.css' />
-    <title>profile page </title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/stylesheets/profile.css' />
+  <title>profile page </title>
 </head>
+
 <body>
-    <h1> Welcome <%= name %> to the protected profile page </h1>
+  <h1> Welcome <%= name %> to the protected profile page </h1>
 
-
-<form id="expForm" action="/users/profile" method="POST">
-  <div class="wrapper">
-    <div class="wrap" id="q1">
-      <div class="text-center pb-4">
-        <div class="h5 font-weight-bold"><span id="number"> </span>1 of 3 </div>
-      </div>
-      <div class="h4 font-weight-bold"> 1. This is how I would describe the shine of my skin:</div>
-      <div class="pt-4">
-        <label class="options">Shiny in my T-zone, but dull on my cheeks. <input value="9" type="radio" name="q1"> <span class="checkmark"></span>
-        </label> <label class="options">My face rarely gets shiny <input value="6" type="radio" name="radio"> <span class="checkmark"></span>
-        </label> <label class="options">Dull everywhere. <input value="2" type="radio" name="radio" id="rd"> <span class="checkmark"></span>
-      </div>
-
-      <div class="d-flex justify-content-end pt-2"> <button class="btn btn-primary" id="next1">Next <span
-            class="fas fa-arrow-right"></span> </button> </div>
+  <form action="/users/quiz" method="POST">
+    <div class="question">
+      <p><strong>Q1</strong>: This is how I would describe the shine of my skin:</p>
+      <label>
+        <input type="radio" name="q1" value="9">Shiny in my T-zone, but dull on my cheeks.</label>
+      <label>
+        <input type="radio" name="q1" value="6">My face rarely gets shiny</label>
+      <label>
+        <input type="radio" name="q1" value="2">Dull everywhere</label>
     </div>
 
-    <div class="wrap" id="q1">
-      <div class="text-center pb-4">
-        <div class="h5 font-weight-bold"><span id="number"> </span>2 of 3 </div>
-      </div>
-      <div class="h4 font-weight-bold"> 2. How does your face react to makeup products after long periods of time?
-      </div>
-      <div class="pt-4">
-        <label class="options">Product begins to look dull and face feels rough to touch (DRY)<input value="2" type="radio" name="q1"> <span class="checkmark"></span></label> 
-        <label class="options">Product fades and/or product is difficult to adhere to skin (OILY)<input value="7" type="radio" name="radio"> <span class="checkmark"></span>
-        </label> <label class="options">Product remains in tact on face with mild shine in T zone (NORMAL)<input value="4" type="radio" name="radio" id="rd"> <span class="checkmark"></span>
-      </div>
 
-      <div class="d-flex justify-content-end pt-2"> <button class="btn btn-primary" id="next1">Next <span
-            class="fas fa-arrow-right"></span> </button> </div>
+    <div class="question">
+      <p><strong>Q2</strong>: How does your face react to makeup products after long periods of time?</p>
+      <label>
+        <input type="radio" name="q2" value="2">Product begins to look dull and face feels rough to touch</label>
+      <label>
+        <input type="radio" name="q2" value="7">Product fades and/or product is difficult to adhere to skin</label>
+      <label>
+        <input type="radio" name="q2" value="4">Product remains in tact on face with mild shine in T zone</label>
     </div>
 
-    <div class="wrap" id="q1">
-      <div class="text-center pb-4">
-        <div class="h5 font-weight-bold"><span id="number"> </span>3 of 3 </div>
-      </div>
-      <div class="h4 font-weight-bold"> 3. How does your skin feel after you wash your face before applying the product?
-      </div>
-      <div class="pt-4">
-        <label class="options">Face feels tight  with no product added  (DRY) <input value="2" type="radio" name="q1"> <span class="checkmark"></span>
-        </label> <label class="options">Face begins to produce oil/shine with no product applied (OILY)<input value="2" type="radio" name="radio"> <span class="checkmark"></span>
-        </label> <label class="options">Face feels normal with no product added (NORMAL)<input  value="5" type="radio" name="radio" id="rd"> <span class="checkmark"></span>
-      </div>
 
-      <div class="d-flex justify-content-end pt-2"> <button class="btn btn-primary" id="next1">Next <span
-            class="fas fa-arrow-right"></span> </button> </div>
+    <div class="question">
+      <p><strong>Q3</strong>: How does your skin feel after you wash your face before applying the product?</p>
+      <label>
+        <input type="radio" name="q3" value="2">Face feels tight  with no product added</label>
+      <label>
+        <input type="radio" name="q3" value="8">Face begins to produce oil/shine with no product applied</label>
+      <label>
+        <input type="radio" name="q3" value="6">Face feels normal with no product added</label>
     </div>
 
-  </div>
-</form>
-  
-   
+    <input type="submit" />
 
- 
+  </form>
+  <!-- template source: https://jsfiddle.net/hibbard_eu/YB2KB/ -->
 </body>
+
 </html>
