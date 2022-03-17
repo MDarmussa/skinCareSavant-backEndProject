@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const bcrypt = require("bcrypt");
-const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const Sequelize = require('sequelize');
 const { User, Comments, Quiz, product } = require('../models');
 const jwt = require('jsonwebtoken');
 const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
+const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const axios = require('axios');
 
 
@@ -84,7 +84,7 @@ router.post('/quiz', isValidToken, async (req, res, next) => {
 })
 
 //Post the API into our db
-router.get('/skintype/:id', async function(req, res, next) {
+router.post('/skintype/:id', async function(req, res, next) {
   const id = req.params.id
   var config = {
     method: 'get',
@@ -99,7 +99,7 @@ router.get('/skintype/:id', async function(req, res, next) {
     .catch(function (error) {
       console.log(error);
     });
-
+    console.log(products)
     const addProduct = await product.create({
       brandBrand: products.data.brand,
       brandName: products.data.name,
