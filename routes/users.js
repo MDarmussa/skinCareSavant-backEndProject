@@ -8,9 +8,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
-
-
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -31,7 +28,7 @@ router.post('/register', async (req, res, next) => {
   res.json('/login');
 });
 
-//post user login 
+//shayma -post user login 
 router.post('/login', async (req, res, next) => {
   let { username, password} = req.body;
 
@@ -73,17 +70,22 @@ router.post('/profile', async (req, res) => {
   res.send(userdata);
 })
 
-//post a comment
+//shayma -post a comment
 router.post('/comment', async (req, res, next) => {
   let { name, title} = req.body;
   console.log(name, title);
 
-  const newUser = await Comments.create({
+  const newComment = await Comments.create({
     name,
     title
   });
-  res.json(newUser);
+  res.json({
+    name: newComment.name,
+    title: newComment.title
+  });
+
 });
+
 
 
 

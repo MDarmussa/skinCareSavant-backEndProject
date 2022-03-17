@@ -1,4 +1,10 @@
 body {
+          min-height: 100%;
+          background-image: url("../img02.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          background-attachment: fixed;
      padding-top: 90px;
  }
  .panel-login {
