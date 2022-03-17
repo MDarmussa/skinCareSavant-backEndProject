@@ -1,11 +1,14 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const axios = require("axios").default;
 const router = express.Router();
-require('dotenv').config();
+const { User, Comments, Quiz, product } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
 const {User, Comments} = require('../models');
 const { use } = require('./users');
+require('dotenv').config();
+const Sequelize = require('sequelize');
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -51,6 +54,28 @@ router.get('/profile/:id', isValidToken, async function(req, res, next) {
   });
   res.render('profile', { name: user.username });
 });
+
+
+router.get('skintype/:id', isValidToken, async (req, res, next) => {
+  const {id} = req.req.params;
+  const user = await User.findOne({
+    where: {
+      id:id
+    },
+  })
+  res.render('profile', {user:user})
+})
+
+router.get('/quiz/:id', isValidToken, async (req, res, next) => {
+  const {id} = req.params;
+  const user = await User.findOne({
+    where:{
+      id: id
+    },
+  })
+  res.render('profile', {user: user})
+})
+
 
 
 module.exports = router;
