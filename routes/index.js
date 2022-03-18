@@ -21,25 +21,29 @@ router.get('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
+router.get('/logout', function(req, res, next) {
+  res.cookie('jwt', '', {maxAge: 1});
+  res.redirect('/');
+});
 
 
 
 // comments route
 router.get('/comment', function(req, res, next) {
-
-  res.render('comment');
+res.render('comment');
 })
 
-router.get('/comment/:id', async function(req, res, next) {
-  const {id} = req.params;
-  // const name = req.body
-  const comments = await Comments.findAll({
-    where:{
-      id:id,
-    }
-  });
-  res.render('comment', { name: comments.name });
-});
+// router.get('/comment/:id', isValidToken, async function(req, res, next) {
+//   const {id} = req.params;
+//   // const name = req.body
+//   const comments = await Comments.findOne({
+//     where:{
+//       id:id,
+//     }
+//   });
+//   res.render('comment', { name: comments.name });
+// });
+
 
 
 //shayma - profile route -auth is work- middleware

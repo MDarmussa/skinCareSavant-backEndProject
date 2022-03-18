@@ -6,20 +6,30 @@ body {
   background-position: center center;
   background-attachment: fixed;
 }
-
+.navbar {
+  padding: 30px;
+}
 h1 {
+  font-family: "lucida handwriting", cursive;
+
+  text-align: center;
+  margin-top: 40px;
+}
+h3 {
+  font-family:  cursive;
   text-align: center;
   margin-top: 40px;
 }
 
+
 .button {
   background-color: #4CAF50;
   color: white;
-  padding: 15px 32px;
+  padding: 15px 80px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 25px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -41,10 +51,14 @@ h1 {
 .grid-container {
   display: grid;
   justify-content:center;
-  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-columns: 300px 300px 300px ;
   padding: 10px;
+  background-color: #4caf4f36;
 }
 .grid-container > div {
+  font-family: cursive;
+  padding-top: 50px ;
+  padding-bottom: 50px;
   text-align: center;
   font-size: 30px;
 }
