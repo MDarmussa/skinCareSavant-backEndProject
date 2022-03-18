@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const Sequelize = require('sequelize');
-const { User, Comments, Quiz, product, Skintype } = require('../models');
+const { User, Comments, Quiz, Product, Skintype } = require('../models');
 const jwt = require('jsonwebtoken');
 const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
@@ -23,9 +23,9 @@ router.post('/register', async (req, res, next) => {
 
   const newUser = await User.create({
     name,
+    email,
     username,
-    password: hashedPassword,
-    email
+    password: hashedPassword, 
   });
   res.json('/login');
 });

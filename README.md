@@ -11,7 +11,7 @@
 
  
 - Tables/model/migration related:
-  npx sequelize-cli model:generate --name Skintype --attributes skin_type:string
+  npx sequelize-cli model:generate --name User --attributes name:string,username:string,password:string,email:string,skintype_id:integer
   npx sequelize-cli db:migrate
 
 
