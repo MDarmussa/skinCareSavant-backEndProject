@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User, Comments, Quiz, product } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
-const {User, Comments} = require('../models');
-const { use } = require('./users');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
@@ -57,11 +55,14 @@ router.get('/profile/:id', isValidToken, async function(req, res, next) {
 
 
 router.get('skintype/:id', isValidToken, async (req, res, next) => {
-  const {id} = req.req.params;
+  const {id} = req.params;
   const user = await User.findOne({
     where: {
       id:id
     },
+  })
+  const products = await product.findAll({
+    
   })
   res.render('profile', {user:user})
 })
