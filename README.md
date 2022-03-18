@@ -11,7 +11,7 @@
 
  
 - Tables/model/migration related:
-  npx sequelize-cli model:generate --name User --attributes name:string,username:string,password:string,email:string,skintype_id:integer
+  npx sequelize-cli model:generate --name Product --attributes url:string
   npx sequelize-cli db:migrate
 
 
@@ -36,3 +36,90 @@
       //     <li>${products.data.brandIngredients[5]}</li>
       //     <li>${products.data.brandIngredients[6]}</li>
       // </ul`
+    brand: DataTypes.STRING,
+    productName: DataTypes.STRING,
+    ingredients: DataTypes.STRING,
+    skintype_id: DataTypes.INTEGER
+
+      npx sequelize-cli model:generate --name Product --attributes brand:string,productName:string,ingredients:string,url:string,skintype_id:integer
+
+
+
+
+
+      midgration file/product -------------
+      'use strict';
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Products', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      brand: {
+        type: Sequelize.STRING
+      },
+      productName: {
+        type: Sequelize.STRING
+      },
+      ingredients: {
+        type: Sequelize.STRING
+      },
+      skintype_id: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: "Skintype",
+          key: "id",
+          as: "skintype_id"
+        }
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Products');
+  }
+};
+
+
+
+model file / product ---------------
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Product extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      Product.hasMany(models.Skintype, {
+        foreignKey: 'skintype_id',
+        onDelete: 'CASCADE'
+      });
+    }
+  }
+  Product.init({
+    brand: DataTypes.STRING,
+    productName: DataTypes.STRING,
+    ingredients: DataTypes.STRING,
+    skintype_id: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'Product',
+  });
+  return Product;
+};

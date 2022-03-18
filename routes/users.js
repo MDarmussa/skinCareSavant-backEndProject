@@ -8,6 +8,8 @@ const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const axios = require('axios');
+const { route } = require('express/lib/application');
+const res = require('express/lib/response');
 
 
 /* GET users listing. */
@@ -64,48 +66,56 @@ router.post('/login', async (req, res, next) => {
 
 
 /* GET Profile */
-router.post('/quiz', async (req, res, next) => {
-  const {q1, q2, q3} = req.body;
-  const quizData = await Quiz.create({
-    question1: q1,
-    question2: q2,
-    question3: q3
-  })
+// router.post('/quiz', async (req, res, next) => {
+//   const {q1, q2, q3} = req.body;
+//   const quizData = await Quiz.create({
+//     question1: q1,
+//     question2: q2,
+//     question3: q3
+//   })
+// if(q1+q2+q3 / 3 = <3){
+//   res.render("you have skin", 3 items from product table)
+// } else if(q1+...etc){
+//   res.render("normal", second 3 items from product table)
 
-  //add logic to do math (if statement)
-  res.json(quizData);
-})
+// } else if{
+//   res.render("oily", second 3 items from product table)
+// }
+//   //add logic to do math (if statement)
+//   res.json(quizData);
+// })
 
 // Post the API into our db //cancel
-router.get('/product/:id', async function(req, res, next) {
-  const { id } = req.params
+// router.get('/product/:id', async function(req, res, next) {
+//   const { id } = req.params
 
-  //get from product table based on skin_id
+//   //get from product table based on skin_id
 
-  var config = {
-    method: 'get',
-    url: `https://skincare-api.herokuapp.com/products/${id}`,
-    headers: { },
-  };
+//   var config = {
+//     method: 'get',
+//     url: `https://skincare-api.herokuapp.com/products/${id}`,
+//     headers: { },
+//   };
 
-  //render to the profile page, then update the user profile with skintype_id
-  const products = await axios(config)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+//   //render(GET) products from product table to the profile page, then update the user profile with recommended products (note)
 
-    console.log(products)
-    const addProduct = await product.create({
-      user_id:id,
-      brand: products.brand,
-      productName: products.name,
-      ingredients: products.ingredient_list
-    })
-    res.json('product added', addProduct)
-});
+//   const products = await axios(config)
+//     .then(function (response) {
+//       return response.data;
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+
+//     console.log(products)
+//     const addProduct = await product.create({
+//       user_id:id,
+//       brand: products.brand,
+//       productName: products.name,
+//       ingredients: products.ingredient_list
+//     })
+//     res.json('product added', addProduct)
+// });
 
 //router to get product based on user id
 //
@@ -139,6 +149,18 @@ router.post('/comment', async (req, res, next) => {
 });
 
 
+//POST Product to SQL Table
+router.post('/products', async (req, res) => {
+  const { brand, productName, ingredients, url } = req.body;
+  const addItem = await Product.create({
+    brand: brand,
+    productName:productName,
+    ingredients: ingredients,
+    url:url
+  });
+  console.log("The new product is: " + addItem)
+  res.json(addItem);
+})
 
 
 module.exports = router;
