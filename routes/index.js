@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User, Comments, Quiz, product } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
-const {User, Comments} = require('../models');
-const { use } = require('./users');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
@@ -23,19 +21,22 @@ router.get('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
+router.get('/logout', function(req, res, next) {
+  res.cookie('jwt', '', {maxAge: 1});
+  res.redirect('/');
+});
 
 
 
 // comments route
 router.get('/comment', function(req, res, next) {
-
-  res.render('comment');
+res.render('comment');
 })
 
-// router.get('/comment/:id', async function(req, res, next) {
+// router.get('/comment/:id', isValidToken, async function(req, res, next) {
 //   const {id} = req.params;
 //   // const name = req.body
-//   const comments = await Comments.findAll({
+//   const comments = await Comments.findOne({
 //     where:{
 //       id:id,
 //     }

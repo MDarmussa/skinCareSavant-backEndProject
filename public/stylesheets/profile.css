@@ -1,2 +1,6 @@
 label{ display: block; }
 input[type=submit]{ margin-top: 15px; }
+
+h3{
+    text-align: center;
+}

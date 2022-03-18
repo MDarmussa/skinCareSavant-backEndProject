@@ -126,7 +126,7 @@ router.post('/quiz', isValidToken, async (req, res, next) => {
   res.send(userdata);
 })
 
-
+// shayma post the user comment
 router.post('/comment', async (req, res, next) => {
   let { name, title} = req.body;
   console.log(name, title);
