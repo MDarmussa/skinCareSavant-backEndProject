@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User, Comments, Quiz, product } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
-const {User, Comments} = require('../models');
-const { use } = require('./users');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
@@ -54,7 +52,6 @@ router.get('/profile/:id', isValidToken, async function(req, res, next) {
   });
   res.render('profile', { name: user.username });
 });
-
 
 router.get('skintype/:id', isValidToken, async (req, res, next) => {
   const {id} = req.req.params;

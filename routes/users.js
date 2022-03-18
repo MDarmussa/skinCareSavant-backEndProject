@@ -80,6 +80,7 @@ router.post('/quiz', isValidToken, async (req, res, next) => {
   res.json(quizData);
 })
 
+
 //Post the API into our db
 router.post('/skintype/:id', async function(req, res, next) {
   const id = req.params.id
