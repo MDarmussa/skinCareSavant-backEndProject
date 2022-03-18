@@ -17,6 +17,9 @@ module.exports = {
       ingredients: {
         type: Sequelize.STRING
       },
+      url: {
+        type: Sequelize.STRING
+      },
       skintype_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
