@@ -11,7 +11,7 @@
 
  
 - Tables/model/migration related:
-  npx sequelize-cli model:generate --name product --attributes user_id:integer,quiz_id:integer,brand:string,productName:string,ingredients:string
+  npx sequelize-cli model:generate --name User --attributes name:string,username:string,password:string,email:string,skintype_id:integer
   npx sequelize-cli db:migrate
 
 
@@ -25,3 +25,14 @@
 - Looping over Array / JSON
   https://www.microverse.org/blog/how-to-loop-through-the-array-of-json-objects-in-javascript
       
+
+          // brandIngredients: 
+      // `<ul>
+      //     <li>${products.data.brandIngredients[0]}</li>
+      //     <li>${products.data.brandIngredients[1]}</li>
+      //     <li>${products.data.brandIngredients[2]}</li>
+      //     <li>${products.data.brandIngredients[3]}</li>
+      //     <li>${products.data.brandIngredients[4]}</li>
+      //     <li>${products.data.brandIngredients[5]}</li>
+      //     <li>${products.data.brandIngredients[6]}</li>
+      // </ul`

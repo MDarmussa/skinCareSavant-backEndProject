@@ -3,24 +3,21 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Quiz extends Model {
+  class Skintype extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-
+      // define association here
     }
   }
-  Quiz.init({
-    user_id: DataTypes.INTEGER,
-    question1: DataTypes.STRING,
-    question2: DataTypes.STRING,
-    question3: DataTypes.STRING
+  Skintype.init({
+    skin_type: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Quiz',
+    modelName: 'Skintype',
   });
-  return Quiz;
+  return Skintype;
 };

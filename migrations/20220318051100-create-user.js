@@ -1,39 +1,33 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('products', {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      name: {
+        type: Sequelize.STRING
+      },
+      username: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      skintype_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
-          model: "User",
+          model: "Skintype",
           key: "id",
-          as: "user_id"
+          as: "skintype_id"
         }
-      },
-      quiz_id: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        references: {
-          model: "Quiz",
-          key: "id",
-          as: "quiz_id"
-        }
-      },
-      brand: {
-        type: Sequelize.STRING
-      },
-      productName: {
-        type: Sequelize.STRING
-      },
-      ingredients: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('products');
+    await queryInterface.dropTable('Users');
   }
 };

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const Sequelize = require('sequelize');
-const { User, Comments, Quiz, product } = require('../models');
+const { User, Comments, Quiz, Product, Skintype } = require('../models');
 const jwt = require('jsonwebtoken');
 const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
@@ -10,10 +10,9 @@ const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
 const axios = require('axios');
 
 
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  // res.send('respond with a resource');
 });
 
 /* POST users Register. */
@@ -24,9 +23,9 @@ router.post('/register', async (req, res, next) => {
 
   const newUser = await User.create({
     name,
+    email,
     username,
-    password: hashedPassword,
-    email
+    password: hashedPassword, 
   });
   res.json('/login');
 });
@@ -60,35 +59,36 @@ router.post('/login', async (req, res, next) => {
   } else {
     res.send("sorry, no user found")
   }
+  // res.redirect('profile')
 });
 
 
 /* GET Profile */
-router.post('/quiz', isValidToken, async (req, res, next) => {
-  // const {id} = req.params;
-  // const user = await User.findOne({
-  //   where: {
-  //     id:id,
-  //   }
-  // })
+router.post('/quiz', async (req, res, next) => {
   const {q1, q2, q3} = req.body;
   const quizData = await Quiz.create({
     question1: q1,
     question2: q2,
     question3: q3
   })
+
+  //add logic to do math (if statement)
   res.json(quizData);
 })
 
-//Post the API into our db
-router.post('/skintype/:id', async function(req, res, next) {
-  const id = req.params.id
+// Post the API into our db //cancel
+router.get('/product/:id', async function(req, res, next) {
+  const { id } = req.params
+
+  //get from product table based on skin_id
+
   var config = {
     method: 'get',
     url: `https://skincare-api.herokuapp.com/products/${id}`,
-    headers: { }
+    headers: { },
   };
 
+  //render to the profile page, then update the user profile with skintype_id
   const products = await axios(config)
     .then(function (response) {
       return response.data;
@@ -96,28 +96,24 @@ router.post('/skintype/:id', async function(req, res, next) {
     .catch(function (error) {
       console.log(error);
     });
+
     console.log(products)
     const addProduct = await product.create({
-      brandBrand: products.data.brand,
-      brandName: products.data.name,
-      // brandIngredients: 
-      // `<ul>
-      //     <li>${products.data.brandIngredients[0]}</li>
-      //     <li>${products.data.brandIngredients[1]}</li>
-      //     <li>${products.data.brandIngredients[2]}</li>
-      //     <li>${products.data.brandIngredients[3]}</li>
-      //     <li>${products.data.brandIngredients[4]}</li>
-      //     <li>${products.data.brandIngredients[5]}</li>
-      //     <li>${products.data.brandIngredients[6]}</li>
-      // </ul`
+      user_id:id,
+      brand: products.brand,
+      productName: products.name,
+      ingredients: products.ingredient_list
     })
-    res.json(products.data.brand)
+    res.json('product added', addProduct)
 });
 
+//router to get product based on user id
+//
 
 
 
-// post the user quiz into db 
+
+// post the user quiz into db //cancel
 router.post('/quiz', isValidToken, async (req, res, next) => {
   const {q1, q2, q3} = req.body;
   var quizValues = req.render('profile')
