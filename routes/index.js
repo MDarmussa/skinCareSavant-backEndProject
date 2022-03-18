@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { User, Comments, Quiz, product } = require('../models');
+const { User, Comments, Quiz, Product, Skintype } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
 const Sequelize = require('sequelize');
@@ -30,52 +30,52 @@ router.get('/comment', function(req, res, next) {
   res.render('comment');
 })
 
-// router.get('/comment/:id', async function(req, res, next) {
-//   const {id} = req.params;
-//   // const name = req.body
-//   const comments = await Comments.findAll({
-//     where:{
-//       id:id,
-//     }
-//   });
-//   res.render('comment', { name: comments.name });
-// });
+router.get('/comment/:id', async function(req, res, next) {
+  const {id} = req.params;
+  // const name = req.body
+  const comments = await Comments.findAll({
+    where:{
+      id:id,
+    }
+  });
+  res.render('comment', { name: comments.name });
+});
 
 
 //shayma - profile route -auth is work- middleware
-// router.get('/profile/:id', isValidToken, async function(req, res, next) {
-//   const {id} = req.params;
-//   const user = await User.findOne({
-//     where:{
-//       id:id
-//     }
-//   });
-//   res.render('profile', { name: user.username });
-// });
+router.get('/profile/:id', isValidToken, async function(req, res, next) {
+  const {id} = req.params;
+  const user = await User.findOne({
+    where:{
+      id:id
+    }
+  });
+  res.render('profile', { name: user.username });
+});
 
 
-// router.get('skintype/:id', isValidToken, async (req, res, next) => {
-//   const {id} = req.params;
-//   const user = await User.findOne({
-//     where: {
-//       id:id
-//     },
-//   })
-//   const products = await product.findAll({
+router.get('skintype/:id', isValidToken, async (req, res, next) => {
+  const {id} = req.params;
+  const user = await User.findOne({
+    where: {
+      id:id
+    },
+  })
+  const products = await product.findAll({
     
-//   })
-//   res.render('profile', {user:user})
-// })
+  })
+  res.render('profile', {user:user})
+})
 
-// router.get('/quiz/:id', isValidToken, async (req, res, next) => {
-//   const {id} = req.params;
-//   const user = await User.findOne({
-//     where:{
-//       id: id
-//     },
-//   })
-//   res.render('profile', {user: user})
-// })
+router.get('/quiz/:id', isValidToken, async (req, res, next) => {
+  const {id} = req.params;
+  const user = await User.findOne({
+    where:{
+      id: id
+    },
+  })
+  res.render('profile', {user: user})
+})
 
 
 
