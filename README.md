@@ -123,3 +123,102 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Product;
 };
+
+
+
+
+
+
+// Post the API into our db //cancel
+// router.get('/product/:id', async function(req, res, next) {
+//   const { id } = req.params
+
+//   //get from product table based on skin_id
+
+//   var config = {
+//     method: 'get',
+//     url: `https://skincare-api.herokuapp.com/products/${id}`,
+//     headers: { },
+//   };
+
+//   //render(GET) products from product table to the profile page, then update the user profile with recommended products (note)
+
+//   const products = await axios(config)
+//     .then(function (response) {
+//       return response.data;
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+
+//     console.log(products)
+//     const addProduct = await product.create({
+//       user_id:id,
+//       brand: products.brand,
+//       productName: products.name,
+//       ingredients: products.ingredient_list
+//     })
+//     res.json('product added', addProduct)
+// });
+
+//router to get product based on user id
+//
+
+
+
+
+
+
+
+/* GET Profile */
+// router.post('/quiz', async (req, res) => {
+//   const {q1, q2, q3} = req.body;
+//   const quizData = await Quiz.create({
+//     question1: q1,
+//     question2: q2,
+//     question3: q3
+//   })
+//   add logic to do math (if statement)
+//   const quizResult = (q1+q2+q3);
+//   switch (quizResult) {
+//     case `(quizResult / 3) < 3)`:
+//       res.send(`/profile/ You have a dry skin `);
+//       break;
+//     case `(quizResult / 3) < 7)`:
+//       res.send(`/profile/ You have a normal skin `)
+//       break;
+//     default:
+//       res.send(`/profile/ You have a Oily skin `)
+//   }
+// })
+  // const quizData = await Quiz.create({
+  //   question1: q1,
+  //   question2: q2,
+  //   question3: q3
+  // })
+  //add logic to do math (if statement)
+/* GET Profile */
+
+
+
+
+//POST Product to SQL Table //admin use only for posting
+// router.post('/products', async (req, res) => {
+//   const { brand, productName, ingredients, url } = req.body;
+//   const addItem = await Product.create({
+//     brand: brand,
+//     productName:productName,
+//     ingredients: ingredients,
+//     url:url
+//   });
+//   console.log("The new product is: " + addItem)
+//   res.json(addItem);
+// })
+
+
+
+
+
+
+
+

@@ -28,7 +28,6 @@ router.get('/logout', function(req, res, next) {
 });
 
 
-
 // comments route
 router.get('/comment', function(req, res, next) {
 res.render('comment');
