@@ -1,30 +1,24 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
-const Sequelize = require('sequelize');
-const {User, Comments, Quiz, Product, Skintype} = require('../models');
-const jwt = require('jsonwebtoken');
-const isValidToken = require('../middleware/isValidToken')
-require('dotenv').config();
-const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR))
+const Sequelize = require("sequelize");
+const { User, Comments, Quiz, Product, Skintype } = require("../models");
+const jwt = require("jsonwebtoken");
+const isValidToken = require("../middleware/isValidToken");
+require("dotenv").config();
+const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
 // const axios = require('axios');
 // const { route } = require('express/lib/application'); //??
 // const res = require('express/lib/response'); //??
 
-
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get("/", function (req, res, next) {
   // res.send('respond with a resource');
 });
 
 /* POST users Register. */
-router.post('/register', async (req, res, next) => {
-  let {
-    name,
-    username,
-    password,
-    email
-  } = req.body;
+router.post("/register", async (req, res, next) => {
+  let { name, username, password, email } = req.body;
   const hashedPassword = bcrypt.hashSync(password, saltRounds);
   console.log(username, password);
 
@@ -34,44 +28,40 @@ router.post('/register', async (req, res, next) => {
     username,
     password: hashedPassword,
   });
-  res.json('/login');
+  res.json("/login");
 });
 
-//shayma -post user login 
-router.post('/login', async (req, res, next) => {
-  let {
-    username,
-    password
-  } = req.body;
+//shayma -post user login
+router.post("/login", async (req, res, next) => {
+  let { username, password } = req.body;
 
   const user = await User.findOne({
     where: {
-      username: username
-    }
+      username: username,
+    },
   });
   if (user) {
-    const comparePass = bcrypt.compareSync(password, user.password)
+    const comparePass = bcrypt.compareSync(password, user.password);
     if (comparePass === true) {
-      const token = jwt.sign({
+      const token = jwt.sign(
+        {
           data: user.username,
         },
-        process.env.SECRET_KEY, {
-          expiresIn: "1h"
+        process.env.SECRET_KEY,
+        {
+          expiresIn: "1h",
         }
       );
-      res.cookie("token", token)
+      res.cookie("token", token);
       res.redirect(`/profile/${user.id}`);
-
     } else {
-      res.send('wrong pass')
+      res.send("wrong pass");
     }
-
   } else {
-    res.send("sorry, no user found")
+    res.send("sorry, no user found");
   }
   // res.redirect('profile')
 });
-
 
 /* GET Profile */
 // router.get('/quiz', async (req, res) => {
@@ -94,45 +84,63 @@ router.post('/login', async (req, res, next) => {
 //   }
 // })
 
+router.post("/quiz", isValidToken, function (req, res, next) {
+  //take user POST submission and generate the math logic in the GET request on the backend
+  const { q1, q2, q3 } = req.body; 
+  console.log(req.body);
+
+  res.send("these are the quiz results");
+  // res.render('')// pass in whatever data to the template 
+    // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
+});
 
 
+//03/19 -- removed the GET route
 
-router.get('/quiz', isValidToken, async (req, res, next) => {
-  const {q1, q2, q3} = req.body;
-  // const quizData = await Quiz.create({
-  //   question1: q1,
-  //   question2: q2,
-  //   question3: q3
-  // })
+// router.get("/quiz", isValidToken, async (req, res, next) => {
+  // this is after the user submits their quiz on the profile route
   //add logic to do math (if statement)
-
-  let oneQuestion=q1;
-  let twoQuestion=q2;
-  let threeQuestion=q3;
-
-  let quizResult = ((oneQuestion+ twoQuestion +threeQuestion )/3);
-  if (quizResult<=3 ) { 
-    res.send(`/profile/ You have dry skin `)
-  } else if((quizResult  <= 5)) {
-    res.send(`/profile/ You have normal skin `)
-
-  } else {
-    res.send(`/profile/ You have oily skin ${oneQuestion} ${twoQuestion} ${threeQuestion} the result is ${quizResult}`)
-  }
-
-  // if ((quizResult /  3)<=3 ) { 
-  //   res.send(`/profile/ You have dry skin `)
-  // } else if((quizResult /  3) <= 5) {
-  //   res.send(`/profile/ You have normal skin `)
-
-  // } else {
-  //   res.send(`/profile/ You have oily skin ${quizResult}`)
-  // }
-  // res.json(quizData);
-})
+  //EJS -- res.render the string as my tempalte name, OBJECT (data that we have made to post int he termplatin gengine )
 
 
 
+// res.render-- information obtainded from DOM in the post request; GET by value is coming from the POST request ; RES RENDER 
+
+  // res.send('this is the quiz route ')
+
+// });
+
+// router.get("/quiz", isValidToken, async (req, res, next) => {
+
+//   const { q1, q2, q3 } = req.body;
+
+//   //add logic to do math (if statement)
+
+//   const oilySkin = parseInt(document.getElementsByClassName("oily").value);
+//   const normalSkin = parseInt(document.getElementsByClassName("normal").value);
+//   const drySkin = parseInt(document.getElementsByClassName("dry").value);
+
+//   let quizResult = (oilySkin + normalSkin + drySkin) / 3;
+//   if (quizResult <= 3) {
+//     res.send(`/profile/ You have dry skin `);
+//   } else if (quizResult <= 5) {
+//     res.send(`/profile/ You have normal skin `);
+//   } else {
+//     res.send(
+//       `/profile/ You have oily skin ${oneQuestion} ${twoQuestion} ${threeQuestion} the result is ${quizResult}`
+//     );
+//   }
+
+// if ((quizResult /  3)<=3 ) {
+//   res.send(`/profile/ You have dry skin `)
+// } else if((quizResult /  3) <= 5) {
+//   res.send(`/profile/ You have normal skin `)
+
+// } else {
+//   res.send(`/profile/ You have oily skin ${quizResult}`)
+// }
+// res.json(quizData);
+// });
 
 // Post the API into our db //cancel
 // router.get('/product/:id', async function(req, res, next) {
@@ -149,7 +157,6 @@ router.get('/quiz', isValidToken, async (req, res, next) => {
 //   //render(GET) products from product table to the profile page, ...
 //then update the user profile with recommended products based on the skin type using skinType_id FK (note)
 //   //render(GET) products from product table to the profile page, then update the user profile with recommended products (note)
-
 
 //   const products = await axios(config)
 //     .then(function (response) {
@@ -172,26 +179,20 @@ router.get('/quiz', isValidToken, async (req, res, next) => {
 //router to get product based on user id
 //
 
-
 // shayma post the user comment
-router.post('/comment', async (req, res, next) => {
-  let {
-    name,
-    title
-  } = req.body;
+router.post("/comment", async (req, res, next) => {
+  let { name, title } = req.body;
   console.log(name, title);
 
   const newComment = await Comments.create({
     name,
-    title
+    title,
   });
   res.json({
     name: newComment.name,
-    title: newComment.title
+    title: newComment.title,
   });
-
 });
-
 
 //POST Product to SQL Table //admin use only for posting
 // router.post('/products', async (req, res) => {
@@ -206,24 +207,16 @@ router.post('/comment', async (req, res, next) => {
 //   res.json(addItem);
 // })
 
-
 //Get product
-router.get('/products', async function (req, res, next) {
-  const {
-    brand,
-    productName,
-    ingredients,
-    url
-  } = req.body;
+router.get("/products", async function (req, res, next) {
+  const { brand, productName, ingredients, url } = req.body;
   const addItem = await Product.findAll({
     brand: brand,
     productName: productName,
     ingredients: ingredients,
-    url: url
+    url: url,
   });
   res.redirect("/profile");
-})
-
-
+});
 
 module.exports = router;
