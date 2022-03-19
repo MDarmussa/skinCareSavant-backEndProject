@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const isValidToken = require("../middleware/isValidToken");
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
+const {Op}=require('@sequelize/core')
 // const axios = require('axios');
 // const { route } = require('express/lib/application'); //??
 // const res = require('express/lib/response'); //??
@@ -86,32 +87,49 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/quiz", isValidToken, async function (req, res, next) {
   //take user POST submission and generate the math logic in the GET request on the backend
-  const { q1, q2, q3 } = req.body; 
+  const { q1, q2, q3 } = req.body;
   console.log(req.body);
 
-  const dataReturn = await Product.findAll() //returns a value-- const something = model.findall
- console.log(dataReturn)
+  quizResult = Number(q1) + Number(q2) + Number(q3);
+  console.log(q1, q2, q3);
+  //quiz logic start
+  let dataReturn;
+
+  if ((quizResult / 3) <= 3) {
+   
+  
+    dataReturn = await Product.findAll({where: {id:{[Op.lte]: 4}}}); //returns a value-- const something = model.findall
+    // res.send("You have dry skin"); //send two arguments; one is thr route
+    // res.render('skin-results', {products: dataReturn})// pass in whatever data to the template
+  } else if ((quizResult / 3) <= 5) {
+    // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
+    dataReturn = await Product.findAll({where: {id:{[Op.between]: [5,7]}}}); //returns a value-- const something = model.findall
+    // res.send(`/profile/ You have normal skin `);
+  } else {
+    dataReturn = await Product.findAll({where: {id:{[Op.gte]: 8}}}); //returns a value-- const something = model.findall
+    // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
+    // res.send(`/profile/ You have oily skin the result is ${quizResult}`);
+  }
+
+  console.log(dataReturn);
   // Res.render(‘myTemplate’, { skin: value, hair: value})
 
   // res.send("these are the quiz results");
-  res.render('skin-results', {products: dataReturn})// pass in whatever data to the template 
-    // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
-    // OBJECT (data that we have made to post int he templating gengine
+  res.render("skin-results", { products: dataReturn }); // pass in whatever data to the template
+  // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
+  // OBJECT (data that we have made to post int he templating gengine
 });
-
 
 //03/19 -- removed the GET route
 
 // router.get("/quiz", isValidToken, async (req, res, next) => {
-  // this is after the user submits their quiz on the profile route
-  //add logic to do math (if statement)
-  //EJS -- res.render the string as my tempalte name, OBJECT (data that we have made to post int he termplatin gengine )
+// this is after the user submits their quiz on the profile route
+//add logic to do math (if statement)
+//EJS -- res.render the string as my tempalte name, OBJECT (data that we have made to post int he termplatin gengine )
 
+// res.render-- information obtainded from DOM in the post request; GET by value is coming from the POST request ; RES RENDER
 
-
-// res.render-- information obtainded from DOM in the post request; GET by value is coming from the POST request ; RES RENDER 
-
-  // res.send('this is the quiz route ')
+// res.send('this is the quiz route ')
 
 // });
 
