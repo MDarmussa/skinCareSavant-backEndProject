@@ -66,24 +66,25 @@ router.post('/login', async (req, res, next) => {
 
 
 /* GET Profile */
-// router.post('/quiz', async (req, res, next) => {
-//   const {q1, q2, q3} = req.body;
-//   const quizData = await Quiz.create({
-//     question1: q1,
-//     question2: q2,
-//     question3: q3
-//   })
-// if(q1+q2+q3 / 3 = <3){
-//   res.render("you have skin", 3 items from product table)
-// } else if(q1+...etc){
-//   res.render("normal", second 3 items from product table)
+router.post('/quiz', async (req, res, next) => {
+  const {q1, q2, q3} = req.body;
+  const quizData = await Quiz.create({
+    question1: q1,
+    question2: q2,
+    question3: q3
+  })
+  //add logic to do math (if statement)
+  const quizResult = q1+q2+q3;
+  if ((quizResult /  3) >= 1 || (quizResult /  3) <= 3) { 
+    res.send(`/profile/ You have a dry skin `)
+  } else {
+    res.send(`/profile/ You have a normal skin `)
 
-// } else if{
-//   res.render("oily", second 3 items from product table)
-// }
-//   //add logic to do math (if statement)
-//   res.json(quizData);
-// })
+  }
+  // res.json(quizData);
+})
+
+
 
 // Post the API into our db //cancel
 // router.get('/product/:id', async function(req, res, next) {
