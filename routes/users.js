@@ -68,19 +68,36 @@ router.post('/login', async (req, res, next) => {
 /* GET Profile */
 router.post('/quiz', async (req, res, next) => {
   const {q1, q2, q3} = req.body;
-  const quizData = await Quiz.create({
-    question1: q1,
-    question2: q2,
-    question3: q3
-  })
+  // const quizData = await Quiz.create({
+  //   question1: q1,
+  //   question2: q2,
+  //   question3: q3
+  // })
   //add logic to do math (if statement)
-  const quizResult = q1+q2+q3;
-  if ((quizResult /  3) >= 1 || (quizResult /  3) <= 3) { 
-    res.send(`/profile/ You have a dry skin `)
-  } else {
-    res.send(`/profile/ You have a normal skin `)
 
+  let oneQuestion=q1;
+  let twoQuestion=q2;
+  let threeQuestion=q3;
+
+  let quizResult = ((oneQuestion+ twoQuestion +threeQuestion )/3);
+
+  if (quizResult<=3 ) { 
+    res.send(`/profile/ You have dry skin `)
+  } else if((quizResult  <= 5)) {
+    res.send(`/profile/ You have normal skin `)
+
+  } else {
+    res.send(`/profile/ You have oily skin ${oneQuestion} ${twoQuestion} ${threeQuestion} the result is ${quizResult}`)
   }
+
+  // if ((quizResult /  3)<=3 ) { 
+  //   res.send(`/profile/ You have dry skin `)
+  // } else if((quizResult /  3) <= 5) {
+  //   res.send(`/profile/ You have normal skin `)
+
+  // } else {
+  //   res.send(`/profile/ You have oily skin ${quizResult}`)
+  // }
   // res.json(quizData);
 })
 
