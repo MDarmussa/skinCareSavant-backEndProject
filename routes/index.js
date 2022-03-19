@@ -4,6 +4,7 @@ const { User, Comments, Quiz, Product, Skintype } = require('../models');
 const isValidToken = require('../middleware/isValidToken')
 require('dotenv').config();
 const Sequelize = require('sequelize');
+const skintype = require('../models/skintype');
 
 
 
@@ -47,13 +48,20 @@ res.render('comment');
 
 
 //shayma - profile route -auth is work- middleware
-router.get('/profile/:id', isValidToken, async function(req, res, next) {
+router.get('/profile/:id', async function(req, res, next) {
   const {id} = req.params;
   const user = await User.findOne({
     where:{
       id:id
     }
   });
+  console.log(user)
+  const product = await Product.findAll({
+    where:{
+      skintype_id:user.skintype_id
+    }
+  });
+  console.log(product)
   res.render('profile', { name: user.username });
 });
 
@@ -80,6 +88,7 @@ router.get('/quiz/:id', isValidToken, async (req, res, next) => {
   })
   res.render('profile', {user: user})
 })
+
 
 
 
