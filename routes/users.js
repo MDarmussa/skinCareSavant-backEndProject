@@ -84,14 +84,19 @@ router.post("/login", async (req, res, next) => {
 //   }
 // })
 
-router.post("/quiz", isValidToken, function (req, res, next) {
+router.post("/quiz", isValidToken, async function (req, res, next) {
   //take user POST submission and generate the math logic in the GET request on the backend
   const { q1, q2, q3 } = req.body; 
   console.log(req.body);
 
-  res.send("these are the quiz results");
-  // res.render('')// pass in whatever data to the template 
+  const dataReturn = await Product.findAll() //returns a value-- const something = model.findall
+ console.log(dataReturn)
+  // Res.render(‘myTemplate’, { skin: value, hair: value})
+
+  // res.send("these are the quiz results");
+  res.render('skin-results', {products: dataReturn})// pass in whatever data to the template 
     // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
+    // OBJECT (data that we have made to post int he templating gengine
 });
 
 
