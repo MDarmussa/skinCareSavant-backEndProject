@@ -7,11 +7,11 @@ const jwt = require("jsonwebtoken");
 const isValidToken = require("../middleware/isValidToken");
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
-const {Op}=require('@sequelize/core')
+const { Op } = require("@sequelize/core");
 // const axios = require('axios');
 // const { route } = require('express/lib/application'); //??
 // const res = require('express/lib/response'); //??
-
+let globalUsername;
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   // res.send('respond with a resource');
@@ -19,22 +19,26 @@ router.get("/", function (req, res, next) {
 
 /* POST users Register. */
 router.post("/register", async (req, res, next) => {
-  let { name, username, password, email } = req.body;
+  let { name, username, password, email, skintype_id } = req.body;
   const hashedPassword = bcrypt.hashSync(password, saltRounds);
   console.log(username, password);
-
+  globalUsername = username;
   const newUser = await User.create({
     name,
     email,
     username,
     password: hashedPassword,
+    skintype_id: 0, //set to 0 initially so user can upate it later; proposal to make new column
   });
-  res.json("/login");
+  res.redirect(`/profile/${newUser.id}`);
+
+  // res.render("/login");
 });
 
 //shayma -post user login
 router.post("/login", async (req, res, next) => {
   let { username, password } = req.body;
+  globalUsername = username;
 
   const user = await User.findOne({
     where: {
@@ -93,23 +97,41 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
   quizResult = Number(q1) + Number(q2) + Number(q3);
   console.log(q1, q2, q3);
   //quiz logic start
-  let dataReturn;
+  // let dataReturn;
+  const user = await User.findOne({
+    where: {
+      username: globalUsername,
+    },
+  });
 
-  if ((quizResult / 3) <= 3) {
-   
-  
-    dataReturn = await Product.findAll({where: {id:{[Op.lte]: 4}}}); //returns a value-- const something = model.findall
+  if (quizResult / 3 <= 3) {
+    user.update({ skintype_id: 1 });
+    // dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
+    //pulling the user id from skinstpe i; the user is already logged in 
+    
+    //returns a value-- const something = model.findall
     // res.send("You have dry skin"); //send two arguments; one is thr route
     // res.render('skin-results', {products: dataReturn})// pass in whatever data to the template
-  } else if ((quizResult / 3) <= 5) {
+  } else if (quizResult / 3 <= 5) {
     // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
-    dataReturn = await Product.findAll({where: {id:{[Op.between]: [5,7]}}}); //returns a value-- const something = model.findall
-    // res.send(`/profile/ You have normal skin `);
+    user.update({ skintype_id: 2 });
+
+    // dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
+    // dataReturn = await Product.findAll({
+   
+    //   where: { id: { [Op.between]: [5, 7] } },
+    // }); //returns a value-- const something = model.findall
+    // // res.send(`/profile/ You have normal skin `);
   } else {
-    dataReturn = await Product.findAll({where: {id:{[Op.gte]: 8}}}); //returns a value-- const something = model.findall
-    // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
-    // res.send(`/profile/ You have oily skin the result is ${quizResult}`);
+    user.update({ skintype_id: 3 });
+
+
+    // dataReturn = await Product.findAll({ where: { id: { [Op.gte]: 8 } } }); //returns a value-- const something = model.findall
+    // // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
+    // // res.send(`/profile/ You have oily skin the result is ${quizResult}`);
   }
+
+  const dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
 
   console.log(dataReturn);
   // Res.render(‘myTemplate’, { skin: value, hair: value})
