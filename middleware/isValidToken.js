@@ -13,6 +13,7 @@ const isValidToken = (req, res, next) => {
           console.log("this is my payload with my token", decoded);
           next();
         } else {
+          console.log(err)
           res.redirect('/error');
         }
       }

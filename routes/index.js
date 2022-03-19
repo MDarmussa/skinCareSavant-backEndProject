@@ -66,7 +66,11 @@ router.get('/profile/:id', async function(req, res, next) {
 });
 
 
-router.get('skintype/:id', isValidToken, async (req, res, next) => {
+
+
+
+
+router.get('skintype/:id', isValidToken, async (req, res, next) => { // found in the users table 
   const {id} = req.params;
   const user = await User.findOne({
     where: {
@@ -79,15 +83,14 @@ router.get('skintype/:id', isValidToken, async (req, res, next) => {
   res.render('profile', {user:user})
 })
 
-router.get('/quiz/:id', isValidToken, async (req, res, next) => {
-  const {id} = req.params;
-  const user = await User.findOne({
-    where:{
-      id: id
-    },
-  })
-  res.render('profile', {user: user})
-})
+// router.get('/quiz/:id', isValidToken, async (req, res, next) => {//this is related to the unused quiz id this is no longer needed 
+//   const user = await User.findOne({
+//     where:{
+//       id: id
+//     },
+//   })
+//   res.render('profile', {user: user})
+// })
 
 
 
