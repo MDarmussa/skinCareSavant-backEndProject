@@ -8,6 +8,18 @@
   </head>
   <body>
     <h1>your skin type is:</h1>
+    <!-- render data from various skin types here so user can see in UI  -->
+
+    <!-- looping through everything in the products arra  -->
+    <%products.forEach(function(product) { %>
+<div>
+   <p> <%=product.brand%></p>
+   <p> <%=product.productName%></p>
+   
+   <img src=<%=product.url%> width="100" height="100"/> 
+
+</div>
+   <% }); %>
 
  
   </body>
