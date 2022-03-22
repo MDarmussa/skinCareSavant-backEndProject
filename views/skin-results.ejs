@@ -37,12 +37,11 @@
    <p> <%=product.ingredients%></p>
 </div>
    <% }); %> -->
+   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
    <%products.forEach(function(product) { %>
-  
    <div class="container">
-      <div class="row">
         <div class="col">
-          <div class="card" style="width: 18rem;">
+          <div class="card h-100">
             <img class="card-img-top" src="<%=product.url%>" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%=product.brand%></h5>
@@ -52,9 +51,10 @@
             </div>
           </div>
         </div>
-      </div>
    </div>
    <% }); %>
+  </div>
+
 
    <!-- card source: https://codingyaar.com/bootstrap-cards-side-by-side-same-height/ -->
 <!-- 
