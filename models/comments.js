@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const user = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class Comments extends Model {
     /**
@@ -10,12 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Comments.belongsTo(models.User)
     }
   }
   Comments.init({
     name: DataTypes.STRING,
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    // userId: { 
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'User',
+    //     Key: 'id'
+    //   }
+
+    // }
   }, {
     sequelize,
     modelName: 'Comments',

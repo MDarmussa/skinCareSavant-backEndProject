@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const isValidToken = require("../middleware/isValidToken");
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
-const { Op } = require("@sequelize/core");
+// const { Op } = require("@sequelize/core");
 // const axios = require('axios');
 // const { route } = require('express/lib/application'); //??
 // const res = require('express/lib/response'); //??
@@ -66,7 +66,6 @@ router.post("/login", async (req, res, next) => {
   } else {
     res.send("sorry, no user found");
   }
-  // res.redirect('profile')
 });
 
 
@@ -77,7 +76,6 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
   console.log(req.body);
 
   quizResult = Number(q1) + Number(q2) + Number(q3);
-  console.log(q1, q2, q3);
 
   const user = await User.findOne({
     where: {
@@ -107,6 +105,7 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
 });
 
 // shayma post the user comment
+
 router.post("/comment", async (req, res, next) => {
   let { name, title } = req.body;
   console.log(name, title);
@@ -115,7 +114,7 @@ router.post("/comment", async (req, res, next) => {
     name,
     title,
   });
-  res.json({
+  res.render('comment',{
     name: newComment.name,
     title: newComment.title,
   });
@@ -134,8 +133,26 @@ router.post("/comment", async (req, res, next) => {
 //   res.json(addItem);
 // })
 
+
+
+// router.delete('/comment/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const deletedUser = await Comments.destroy({
+//       where: {
+//           id
+//       }
+//   });
+//   res.json(deletedUser);
+// });
+
+
+
+//POST Product to SQL Table
+router.post('/products', async (req, res) => {
+
 //Get product
 router.get("/products", async function (req, res, next) {
+
   const { brand, productName, ingredients, url } = req.body;
   const addItem = await Product.findAll({
     brand: brand,
