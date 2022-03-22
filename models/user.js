@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'skintype_id',
         onDelete: 'CASCADE'
       });
+      // User.hasMany(models.Comments);
     }
   }
   User.init({
