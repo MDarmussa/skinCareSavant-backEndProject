@@ -27,6 +27,10 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+router.get('/reset-password', function(req,res,next){
+  res.render('reset-password')
+})
+
 
 
 // comments route
