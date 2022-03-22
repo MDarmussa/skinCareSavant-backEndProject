@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const isValidToken = require("../middleware/isValidToken");
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
-const { Op } = require("@sequelize/core");
+// const { Op } = require("@sequelize/core");
 // const axios = require('axios');
 // const { route } = require('express/lib/application'); //??
 // const res = require('express/lib/response'); //??
@@ -95,7 +95,7 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
   console.log(req.body);
 
   quizResult = Number(q1) + Number(q2) + Number(q3);
-  console.log(q1, q2, q3);
+  console.log('here are the questions values: ', q1, q2, q3);
   //quiz logic start
   // let dataReturn;
   const user = await User.findOne({
