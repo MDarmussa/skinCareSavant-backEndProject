@@ -61,7 +61,6 @@ router.post('/login', async (req, res, next) => {
   } else {
     res.send("sorry, no user found")
   }
-  // res.redirect('profile')
 });
 
 
@@ -133,7 +132,7 @@ router.post('/quiz', isValidToken, async (req, res, next) => {
 })
 
 // shayma post the user comment
-router.post('/comment', async (req, res, next) => {
+router.post('/comment', isValidToken, async (req, res, next) => {
   let { name, title} = req.body;
   console.log(name, title);
 
@@ -141,12 +140,26 @@ router.post('/comment', async (req, res, next) => {
     name,
     title
   });
-  res.json({
+  res.render('comment',{
     name: newComment.name,
     title: newComment.title
   });
 
 });
+
+
+
+
+// router.delete('/comment/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const deletedUser = await Comments.destroy({
+//       where: {
+//           id
+//       }
+//   });
+//   res.json(deletedUser);
+// });
+
 
 
 //POST Product to SQL Table

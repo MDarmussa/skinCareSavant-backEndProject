@@ -29,19 +29,19 @@ router.get('/logout', function(req, res, next) {
 
 
 // comments route
-router.get('/comment', function(req, res, next) {
-res.render('comment');
-})
+router.get('/comment',  function(req, res, next) {
+  res.render('comment');
+});
+
 
 // router.get('/comment/:id', isValidToken, async function(req, res, next) {
 //   const {id} = req.params;
-//   // const name = req.body
 //   const comments = await Comments.findOne({
 //     where:{
 //       id:id,
 //     }
 //   });
-//   res.render('comment', { name: comments.name });
+//   res.render('comment', { title: comments.title });
 // });
 
 
