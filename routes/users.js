@@ -162,5 +162,6 @@ router.get("/products", async function (req, res, next) {
   });
   res.redirect("/profile");
 });
+})
 
 module.exports = router;
