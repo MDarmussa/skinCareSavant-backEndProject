@@ -60,33 +60,15 @@ router.post("/login", async (req, res, next) => {
       res.cookie("token", token);
       res.redirect(`/profile/${user.id}`);
     } else {
-      res.send("wrong pass");
+      // res.send("wrong pass");
+      res.redirect("/reset-password"); //added by Rashida on 03-21-22
     }
   } else {
     res.send("sorry, no user found");
   }
 });
 
-/* GET Profile */
-// router.get('/quiz', async (req, res) => {
-//   const {q1, q2, q3} = req.body;
-//   const quizData = await Quiz.create({
-//     question1: q1,
-//     question2: q2,
-//     question3: q3
-//   })
-//   const quizResult = await (q1+q2+q3);
-//   switch (quizResult) {
-//     case `((quizResult / 3)) < 3)`:
-//       res.send(`/profile/ You have a dry skin `);
-//       break;
-//     case `((quizResult / 3)) < 7)`:
-//       res.send(`/profile/ You have a normal skin `)
-//       break;
-//     default:
-//       res.send(`/profile/ You have a Oily skin `)
-//   }
-// })
+
 
 router.post("/quiz", isValidToken, async function (req, res, next) {
   //take user POST submission and generate the math logic in the GET request on the backend
@@ -94,9 +76,7 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
   console.log(req.body);
 
   quizResult = Number(q1) + Number(q2) + Number(q3);
-  console.log('here are the questions values: ', q1, q2, q3);
-  //quiz logic start
-  // let dataReturn;
+
   const user = await User.findOne({
     where: {
       username: globalUsername,
@@ -104,124 +84,25 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
   });
 
   if (quizResult / 3 <= 3) {
+    let skinType="Dry";
     user.update({ skintype_id: 1 });
-    // dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
-    //pulling the user id from skinstpe i; the user is already logged in 
-    
-    //returns a value-- const something = model.findall
-    // res.send("You have dry skin"); //send two arguments; one is thr route
-    // res.render('skin-results', {products: dataReturn})// pass in whatever data to the template
   } else if (quizResult / 3 <= 5) {
-    // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
+    let skinType="Normal";
     user.update({ skintype_id: 2 });
-
-    // dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
-    // dataReturn = await Product.findAll({
-   
-    //   where: { id: { [Op.between]: [5, 7] } },
-    // }); //returns a value-- const something = model.findall
-    // // res.send(`/profile/ You have normal skin `);
   } else {
+    let skinType="Oily";
     user.update({ skintype_id: 3 });
-
-
-    // dataReturn = await Product.findAll({ where: { id: { [Op.gte]: 8 } } }); //returns a value-- const something = model.findall
-    // // dataReturn = await Product.findAll(id >= 8); //returns a value-- const something = model.findall
-    // // res.send(`/profile/ You have oily skin the result is ${quizResult}`);
   }
 
-  const dataReturn = await Product.findAll({ where: { skintype_id: user.skintype_id } } ); 
+  const dataReturn = await Product.findAll({
+    where: { skintype_id: user.skintype_id },
+  });
 
   console.log(dataReturn);
-  // Res.render(‘myTemplate’, { skin: value, hair: value})
-
-  // res.send("these are the quiz results");
   res.render("skin-results", { products: dataReturn }); // pass in whatever data to the template
   // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
   // OBJECT (data that we have made to post int he templating gengine
 });
-
-//03/19 -- removed the GET route
-
-// router.get("/quiz", isValidToken, async (req, res, next) => {
-// this is after the user submits their quiz on the profile route
-//add logic to do math (if statement)
-//EJS -- res.render the string as my tempalte name, OBJECT (data that we have made to post int he termplatin gengine )
-
-// res.render-- information obtainded from DOM in the post request; GET by value is coming from the POST request ; RES RENDER
-
-// res.send('this is the quiz route ')
-
-// });
-
-// router.get("/quiz", isValidToken, async (req, res, next) => {
-
-//   const { q1, q2, q3 } = req.body;
-
-//   //add logic to do math (if statement)
-
-//   const oilySkin = parseInt(document.getElementsByClassName("oily").value);
-//   const normalSkin = parseInt(document.getElementsByClassName("normal").value);
-//   const drySkin = parseInt(document.getElementsByClassName("dry").value);
-
-//   let quizResult = (oilySkin + normalSkin + drySkin) / 3;
-//   if (quizResult <= 3) {
-//     res.send(`/profile/ You have dry skin `);
-//   } else if (quizResult <= 5) {
-//     res.send(`/profile/ You have normal skin `);
-//   } else {
-//     res.send(
-//       `/profile/ You have oily skin ${oneQuestion} ${twoQuestion} ${threeQuestion} the result is ${quizResult}`
-//     );
-//   }
-
-// if ((quizResult /  3)<=3 ) {
-//   res.send(`/profile/ You have dry skin `)
-// } else if((quizResult /  3) <= 5) {
-//   res.send(`/profile/ You have normal skin `)
-
-// } else {
-//   res.send(`/profile/ You have oily skin ${quizResult}`)
-// }
-// res.json(quizData);
-// });
-
-// Post the API into our db //cancel
-// router.get('/product/:id', async function(req, res, next) {
-//   const { id } = req.params
-
-//   //get from product table based on skin_id
-
-//   var config = {
-//     method: 'get',
-//     url: `https://skincare-api.herokuapp.com/products/${id}`,
-//     headers: { },
-//   };
-
-//   //render(GET) products from product table to the profile page, ...
-//then update the user profile with recommended products based on the skin type using skinType_id FK (note)
-//   //render(GET) products from product table to the profile page, then update the user profile with recommended products (note)
-
-//   const products = await axios(config)
-//     .then(function (response) {
-//       return response.data;
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-
-//     console.log(products)
-//     const addProduct = await product.create({
-//       user_id:id,
-//       brand: products.brand,
-//       productName: products.name,
-//       ingredients: products.ingredient_list
-//     })
-//     res.json('product added', addProduct)
-// });
-
-//router to get product based on user id
-//
 
 // shayma post the user comment
 
