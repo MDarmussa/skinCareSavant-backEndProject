@@ -1,14 +1,16 @@
 body {
   min-height: 100%;
-  background-image: url("../images/img02.jpg");
+  background-image: url("../images/img04.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
 }
 .navbar {
-  padding: 30px;
+  padding: 20px;
 }
+
+
 h1 {
   font-family: "lucida handwriting", cursive;
 
@@ -23,9 +25,9 @@ h3 {
 
 
 .button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 15px 80px;
+  background-color: #f7dbf0;
+  color: rgb(15, 15, 15);
+  padding: 15px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -36,7 +38,7 @@ h3 {
 
 .container { 
   height: 200px;
-  position: relative;
+  position:relative;
 }
 
 .center {
@@ -52,8 +54,7 @@ h3 {
   display: grid;
   justify-content:center;
   grid-template-columns: 300px 300px 300px ;
-  padding: 10px;
-  background-color: #4caf4f36;
+  background-color: #f3dcef8a;
 }
 .grid-container > div {
   font-family: cursive;
@@ -61,4 +62,15 @@ h3 {
   padding-bottom: 50px;
   text-align: center;
   font-size: 30px;
+  
+}
+
+/* container for welcom to skincare */
+
+
+.col {
+  background-color: #f3dcef8a;
+  padding: 10px;
+  margin-top: 40px;
+  
 }

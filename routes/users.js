@@ -162,4 +162,8 @@ router.post("/products", async (req, res) => {
   });
 });
 
+
+
+
+
 module.exports = router;

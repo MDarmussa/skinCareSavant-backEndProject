@@ -3,8 +3,37 @@
    }
     */
 
-    .container {
+    /* .container {
          display: flex;
          flex-direction: column;
          flex-wrap: nowrap
-    }
+    } */
+
+    body {
+     min-height: 100%;
+     background-image: url("../images/img04.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center center;
+     background-attachment: fixed;
+   }
+
+   h1 {
+     font-family: "lucida handwriting", cursive;
+     text-align: center;
+     margin-top: 40px;
+   }
+
+    .container { 
+     height: 200px;
+     position:relative;
+   }
+   
+   .center {
+     margin: 0;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     -ms-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+   }
