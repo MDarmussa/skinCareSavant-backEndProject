@@ -11,12 +11,12 @@ body {
 }
 
 
-h1 {
+h1 , h4{
   font-family: "lucida handwriting", cursive;
-
   text-align: center;
   margin-top: 40px;
 }
+
 h3 {
   font-family:  cursive;
   text-align: center;
@@ -36,10 +36,15 @@ h3 {
   cursor: pointer;
 }
 
+/* this is for comment placeholder */
 .container { 
   height: 200px;
   position:relative;
 }
+
+.col-12 {
+margin: 12px;}
+
 
 .center {
   margin: 0;
@@ -71,6 +76,30 @@ h3 {
 .col {
   background-color: #f3dcef8a;
   padding: 10px;
-  margin-top: 40px;
-  
+  margin-top: 40px;  
 }
+
+ /* this is for comment box */
+ p{
+  width: 70%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 3px solid rgba(230, 164, 221, 0.815);
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+ }
+
+ .checked {
+  color: orange;
+  float: right;
+}
+
+i{
+  float: right;
+  letter-spacing: 15px;
+
+}
+
