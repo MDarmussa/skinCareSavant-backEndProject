@@ -36,10 +36,40 @@ h1 {
 }
 
 
-	
-/* 
-.quizContainer {
-	background-color: #f1ebf0b0;
-	padding: 2em;
-	justify-content: center;
-} */
+
+
+
+.about-cards-section{
+
+  .card-wrapper{
+      margin: 5% 0;
+
+      .card-style{
+          text-align: center;
+          border-radius: initial;
+          border: initial;
+
+
+          .circle-image{
+
+              width: 60%;
+              height: 200px;
+              text-align: center;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 20px;
+          }
+          .card-title{
+
+              text-transform: uppercase;
+              letter-spacing: 1.1px;
+          }
+          .card-text{
+              font-family: MerriweatherRegular;
+              font-size: 22px;
+              line-height: initial;
+
+          }
+      }
+}
