@@ -68,8 +68,6 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-
-
 router.post("/quiz", isValidToken, async function (req, res, next) {
   //take user POST submission and generate the math logic in the GET request on the backend
   const { q1, q2, q3 } = req.body;
@@ -83,23 +81,29 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
     },
   });
 
+let skinTypeID='' ;
+
   if (quizResult / 3 <= 3) {
-    let skinType="Dry";
     user.update({ skintype_id: 1 });
+     skinTypeID="dry"
   } else if (quizResult / 3 <= 5) {
-    let skinType="Normal";
     user.update({ skintype_id: 2 });
+    skinTypeID="normal"
+
   } else {
-    let skinType="Oily";
     user.update({ skintype_id: 3 });
+    skinTypeID="oily"
+
   }
+
+console.log(skinTypeID);
 
   const dataReturn = await Product.findAll({
     where: { skintype_id: user.skintype_id },
   });
 
-  console.log(dataReturn);
-  res.render("skin-results", { products: dataReturn }); // pass in whatever data to the template
+  // console.log(dataReturn);
+  res.render("skin-results", { products: dataReturn, skinType:skinTypeID}, ); // pass in whatever data to the template
   // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
   // OBJECT (data that we have made to post int he templating gengine
 });
@@ -114,7 +118,7 @@ router.post("/comment", async (req, res, next) => {
     name,
     title,
   });
-  res.render('comment',{
+  res.render("comment", {
     name: newComment.name,
     title: newComment.title,
   });
@@ -133,8 +137,6 @@ router.post("/comment", async (req, res, next) => {
 //   res.json(addItem);
 // })
 
-
-
 // router.delete('/comment/:id', async (req, res) => {
 //   const { id } = req.params;
 //   const deletedUser = await Comments.destroy({
@@ -145,22 +147,20 @@ router.post("/comment", async (req, res, next) => {
 //   res.json(deletedUser);
 // });
 
-
-
 //POST Product to SQL Table
-
-//Get product
-router.get("/products", async function (req, res, next) {
-
-  const { brand, productName, ingredients, url } = req.body;
-  const addItem = await Product.findAll({
-    brand: brand,
-    productName: productName,
-    ingredients: ingredients,
-    url: url,
+router.post("/products", async (req, res) => {
+  //Get product
+  router.get("/products", async function (req, res, next) {
+    const { brand, productName, ingredients, url } = req.body;
+    const addItem = await Product.findAll({
+      brand: brand,
+      productName: productName,
+      ingredients: ingredients,
+      url: url,
+    });
+    res.redirect("/profile");
   });
-  res.redirect("/profile");
-});
+
 
 //trial 1 - updating username
 router.post('/users',isValidToken, async (req, res) => {
