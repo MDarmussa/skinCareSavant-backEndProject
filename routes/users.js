@@ -114,10 +114,7 @@ router.post("/comment", async (req, res, next) => {
     name,
     title,
   });
-  res.render('comment',{
-    name: newComment.name,
-    title: newComment.title,
-  });
+  res.redirect('/comment');
 });
 
 //POST Product to SQL Table //admin use only for posting

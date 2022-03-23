@@ -1,0 +1,121 @@
+body {
+    margin: auto;
+    padding: auto;
+    /* background-image: url("../images/img04.jpg"); */
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center center;
+     background-attachment: fixed;
+
+}
+
+.jumbotron{
+    margin:0px 0px 0px 0px;
+      background: 
+  linear-gradient(
+    rgba(238, 128, 214, 0.377), 
+    rgba(125, 250, 250, 0.45)
+  );
+  /* url(images/contactpagebg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+  color:rgb(0, 0, 0) !important;
+  height:150px;
+  }
+
+  .display-2 {
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.row {
+    margin: auto;
+    padding: auto;
+}
+.team {
+    margin: auto;
+    
+}
+h4 {
+    margin: 20px;
+    padding: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.212);
+    width: 100%;
+    text-align: center;
+    background-color: rgba(238, 128, 214, 0.377);
+   
+}
+
+.container {
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.container p {
+    text-align:center;
+    color: black;  
+}
+
+.gallery {
+    /* background-color: rgba(238, 128, 214, 0.377); */
+    margin:0px 0px 0px 0px;
+    background: 
+linear-gradient(
+  rgba(238, 128, 214, 0.377), 
+  rgba(125, 250, 250, 0.45)
+);
+
+
+}
+    
+.rashida {
+    border-radius: 50%;
+    /* border: 4px solid rgba(19, 40, 238, 0.589); */
+    float:left;
+    margin: 10px;
+    
+}
+
+
+
+.moh {
+    border-radius: 50%;
+    /* border: 4px solid rgba(19, 40, 238, 0.589); */
+    float:left;
+    margin: 10px;
+}
+ 
+.shayma {
+    border-radius: 50%;
+    border: 4px solid rgba(230, 166, 216, 0.589);
+    float:left;
+    margin: 10px;
+
+}
+
+.jeff {
+    border-radius: 50%;
+    border: 4px solid rgba(19, 40, 238, 0.589);
+    float:left;
+    margin: 10px;
+
+}
+
+ h3 {
+    color: black;
+    text-align: center;
+}
+
+p {
+    color: black;
+    text-align: center;
+}
+
+/* footer {
+    text-align: center;
+    padding: 1px;
+    background-color: rgba(238, 128, 214, 0.377);
+  }
+  .footer p {
+      color: black;
+  } */
