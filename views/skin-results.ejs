@@ -12,11 +12,6 @@
   </head>
   <body>
     <h1>your skin type is: <%= skinType %> </h1>
-
-
-
-  
-
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f3dcef8a;">
       <div class="container1">
       <nav class="nav nav-pills flex-row flex-sm-row">
@@ -25,25 +20,10 @@
           <a class="flex-sm-fill text-sm-center nav-link" href="/">About</a>
           <a class="flex-sm-fill text-sm-center nav-link" href="">Contact</a>
           <a class="flex-sm-fill text-sm-center nav-link"  href="/logout">Logout</a>
-          
-           
         </div>
       </nav>
   </nav>
-    
     <h1>your skin type is: </h1>
-
-    <!-- render data from various skin types here so user can see in UI  -->
-
-    <!-- looping through everything in the products arra  -->
-    <!-- <%products.forEach(function(product) { %>
-<div>
-   <p> <%=product.brand%></p>
-   <p> <%=product.productName%></p>
-   <img src=<%=product.url%> width="100" height="100"/> 
-   <p> <%=product.ingredients%></p>
-</div>
-   <% }); %> -->
    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
    <%products.forEach(function(product) { %>
    <div class="container">
@@ -61,26 +41,5 @@
    </div>
    <% }); %>
   </div>
-
-
-   <!-- card source: https://codingyaar.com/bootstrap-cards-side-by-side-same-height/ -->
-<!-- 
-   <%products.forEach(function(product) { %>
-   <div class="container">
-     <div class="row">
-       <div class="col">
-         <div class="card style="width: 18rem">
-           <img src=<%=product.url%> class="card-img-top" alt="..." />
-           <div class="card-body">
-             <h4 class="card-title"><%=product.productName%></h4>
-             <h5 class="card-title"><%=product.productName%></h5>
-             <p class="card-text"><%=product.ingredients%></p>
-           </div>
-         </div>
-       </div>
-     </div>
-     <% }); %> -->
-
- 
   </body>
 </html>
