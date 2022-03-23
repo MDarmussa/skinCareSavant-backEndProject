@@ -109,19 +109,19 @@ router.post("/comment", async (req, res, next) => {
 });
 
 //trial 1 - updating username
-router.post("/users", isValidToken, async (req, res) => {
-  let { username } = req.body;
-  const updatedUser = await User.update({
-    where: {
-      username: username,
-    },
-  });
-  console.log(updatedUser);
-  res.json("line 174", updatedUser);
-});
+// router.post("/users", isValidToken, async (req, res) => {
+//   let { username } = req.body;
+//   const updatedUser = await User.update({
+//     where: {
+//       username: username,
+//     },
+//   });
+//   console.log(updatedUser);
+//   res.json("line 174", updatedUser);
+// });
 
 //trial 2 - updating username
-router.patch("/users/:username", (req, res) => {
+router.patch("/update/:username", (req, res) => {
   console.log("PATCH /user/:id");
   const username = req.params.username;
   console.log(taskID);

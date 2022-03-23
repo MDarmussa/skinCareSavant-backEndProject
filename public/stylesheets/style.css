@@ -6,10 +6,23 @@ body {
   background-position: center center;
   background-attachment: fixed;
 }
-.navbar {
-  padding: 20px;
+
+#navBar {
+  background-color:brown;
 }
 
+#navigation{
+  style="background-color: #c776af50"
+}
+
+/* #nav-container{
+  color: red
+} */
+
+#navMenu:hover{
+  background-color: white;
+  color: #e76671;
+  }
 
 h1 , h4{
   font-family: "lucida handwriting", cursive;
@@ -17,8 +30,19 @@ h1 , h4{
   margin-top: 40px;
 }
 
+h1 {
+  font-family: 'Source Serif Pro', serif;
+
+  text-align: center;
+  margin-top: 40px;
+}
+h2 {
+  font-family: 'Source Serif Pro', serif;
+  text-align: center;
+  margin-top: 40px;
+}
 h3 {
-  font-family:  cursive;
+  font-family: 'Source Serif Pro', serif;
   text-align: center;
   margin-top: 40px;
 }
@@ -27,16 +51,37 @@ h3 {
 .button {
   background-color: #f7dbf0;
   color: rgb(15, 15, 15);
-  padding: 15px 50px;
-  text-align: center;
+  /* padding: 15px 50px; */
+  /* text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: inline-block; */
   font-size: 25px;
   margin: 4px 2px;
   cursor: pointer;
+
+
 }
 
 /* this is for comment placeholder */
+
+#submit-button:hover{
+background-color: white;
+color: #e76671;
+}
+
+
+#submit-button-div{
+
+
+
+  }
+
+  #submit-button{
+    /* width: 20%; */
+    width: auto;
+    font-family: 'Source Serif Pro', serif;
+  }
+
 .container { 
   height: 200px;
   position:relative;
@@ -70,10 +115,17 @@ margin: 12px;}
   
 }
 
+#main-container{
+  display:grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+
 /* container for welcom to skincare */
 
 
-.col {
+#landing-page-main {
   background-color: #f3dcef8a;
   padding: 10px;
   margin-top: 40px;  
