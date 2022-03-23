@@ -11,6 +11,10 @@ body {
   background-color:brown;
 }
 
+#navigation{
+  style="background-color: #c776af50"
+}
+
 /* #nav-container{
   color: red
 } */
@@ -65,7 +69,8 @@ color: #e76671;
   }
 
   #submit-button{
-    width: 20%;
+    /* width: 20%; */
+    width: auto;
     font-family: 'Source Serif Pro', serif;
   }
 
