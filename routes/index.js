@@ -24,18 +24,23 @@ router.get('/login', function(req, res, next) {
 });
 router.get('/logout', function(req, res, next) {
   res.cookie('jwt', '', {maxAge: 1});
-  res.redirect('/');
+  res.redirect('/login');
 });
+
 
 router.get('/reset-password', function(req,res,next){
   res.render('reset-password')
 })
 
-
+router.get('/about', function(req,res,next){
+  res.render('about')
+})
 
 // comments route
-router.get('/comment',  function(req, res, next) {
-  res.render('comment');
+router.get('/comment', async function(req, res, next) {
+  const findallcomment = await Comments.findAll();
+  console.log(findallcomment);
+  res.render('comment', {findallcomment: findallcomment});
 });
 
 

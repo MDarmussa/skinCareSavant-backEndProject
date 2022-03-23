@@ -118,6 +118,7 @@ router.post("/comment", async (req, res, next) => {
     name,
     title,
   });
+  res.redirect('/comment');
   res.render("comment", {
     name: newComment.name,
     title: newComment.title,
