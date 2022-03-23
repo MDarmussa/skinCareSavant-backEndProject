@@ -60,12 +60,12 @@ router.get('/profile/:id', async function(req, res, next) {
     }
   });
   console.log(user)
-  const product = await Product.findAll({
-    where:{
-      skintype_id:user.skintype_id
-    }
-  });
-  console.log(product)
+  // const product = await Product.findAll({
+  //   where:{
+  //     skintype_id:user.skintype_id
+  //   }
+  // });
+  // console.log(product)
   res.render('profile', { name: user.username });
 });
 
