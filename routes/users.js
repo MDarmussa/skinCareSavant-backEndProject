@@ -160,10 +160,27 @@ router.post("/products", async (req, res) => {
     });
     res.redirect("/profile");
   });
+
+
+//trial 1 - updating username
+router.post('/users',isValidToken, async (req, res) => {
+  let { username } = req.body;
+  const updatedUser = await User.update({
+    where: {
+      username: username
+    }
+  });
+  console.log(updatedUser)
+  res.json('line 174', updatedUser);
 });
 
-
-
-
+//trial 2 - updating username
+router.patch("/users/:username", (req, res) => {
+  console.log("PATCH /user/:id");
+  const username = req.params.username;
+  console.log(taskID);
+  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`) //where id = 4;
+  res.json(`${username} has been updated`);//res.send(taskID);
+});
 
 module.exports = router;
