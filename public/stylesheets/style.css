@@ -6,14 +6,19 @@ body {
   background-position: center center;
   background-attachment: fixed;
 }
-.navbar {
-  padding: 20px;
+
+#navBar {
+  background-color:brown;
 }
 
-#nav-container{
+/* #nav-container{
   color: red
-}
+} */
 
+#navMenu:hover{
+  background-color: white;
+  color: #e76671;
+  }
 
 h1 {
   font-family: 'Source Serif Pro', serif;
