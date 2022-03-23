@@ -1,70 +1,65 @@
 <!DOCTYPE html>
 <html>
-
-
   <head>
-   
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-
-
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel='stylesheet' href='/stylesheets/style.css'/>
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f3dcef77;">
-    <div class="container1">
-      <nav class="nav nav-pills flex-row flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link " href="">SkincareSavant</a>
-
-
-        <a class="flex-sm-fill text-sm-center nav-link " href="">Home</a>
-
-        <a class="flex-sm-fill text-sm-center nav-link" href="/about">About</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="">Contact</a>
-
-
-        <head>
-          <%- include('partials/indexHead') -%>
-        </head>
-
-        <body>
-
-
-
-              <div class="col">
-                <h1> Welcome To <br /> SkincareSavant </h1>
-                <br />
-                <h3>ARE YOU LOOKING FOR A COMPARABLE PRODUCT TODAY ?
-                  <br /><br />
-                  What Your Skin Type</h3>              
-                </div>
-                  
-
-          <div class="grid-container">
-            <div>Oily</div>
-            <div>Dry</div>
-            <div>Normal</div>
-
-          </div>
-          <div class="container">
-            <div class="center">
-
-              <a href="/login" class="btn btn-dark">Get Start</a>
+    <!-- <%- include('partials/home-nav') %> -->
+    <!-- <div class="container">
+      <div class="row" id="landing-page-container-01">
+        <div class="col landing-page-grid-class">
+          <div class="row" id="landing-page-main">
+            <h1>Welcome To SkincareSavant</h1>
+            <h3>your one-stop shop for all things skincare</h3>
+         
+            <div class="row" id="landing-page-button-select">
+                <a href="/login" id="submit-button" class="btn btn-dark">
+                  Find Your Skin Type
+                </a>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="container">
+      <div id="main-container">
+        <div class="row">
+          <div class="col">
+            <%- include('partials/home-nav') %>
+          
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h1>Welcome To SkincareSavant</h1>
 
-      </nav>
-  </nav>
- 
-
-
-</body>
-
+            <div class="row">
+              <h3>your one-stop shop for all things skincare</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="submit-button-div ">
+          <div class="col">
+            <a href="/login" id="submit-button" class="btn btn-dark">
+              Find Your Skin Type
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
