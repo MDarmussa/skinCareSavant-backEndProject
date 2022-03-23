@@ -7,10 +7,6 @@ const jwt = require("jsonwebtoken");
 const isValidToken = require("../middleware/isValidToken");
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
-// const { Op } = require("@sequelize/core");
-// const axios = require('axios');
-// const { route } = require('express/lib/application'); //??
-// const res = require('express/lib/response'); //??
 let globalUsername;
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -28,14 +24,11 @@ router.post("/register", async (req, res, next) => {
     email,
     username,
     password: hashedPassword,
-    skintype_id: 0, //set to 0 initially so user can upate it later; proposal to make new column
+    skintype_id: 0,
   });
   res.redirect(`/profile/${newUser.id}`);
-
-  // res.render("/login");
 });
 
-//shayma -post user login
 router.post("/login", async (req, res, next) => {
   let { username, password } = req.body;
   globalUsername = username;
@@ -60,8 +53,8 @@ router.post("/login", async (req, res, next) => {
       res.cookie("token", token);
       res.redirect(`/profile/${user.id}`);
     } else {
-      // res.send("wrong pass");
-      res.redirect("/reset-password"); //added by Rashida on 03-21-22
+    
+      res.send("wrong password!");
     }
   } else {
     res.send("sorry, no user found");
@@ -69,7 +62,6 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/quiz", isValidToken, async function (req, res, next) {
-  //take user POST submission and generate the math logic in the GET request on the backend
   const { q1, q2, q3 } = req.body;
   console.log(req.body);
 
@@ -81,34 +73,28 @@ router.post("/quiz", isValidToken, async function (req, res, next) {
     },
   });
 
-let skinTypeID='' ;
+  let skinTypeID = "";
 
   if (quizResult / 3 <= 3) {
     user.update({ skintype_id: 1 });
-     skinTypeID="dry"
+    skinTypeID = "dry";
   } else if (quizResult / 3 <= 5) {
     user.update({ skintype_id: 2 });
-    skinTypeID="normal"
-
+    skinTypeID = "normal";
   } else {
     user.update({ skintype_id: 3 });
-    skinTypeID="oily"
-
+    skinTypeID = "oily";
   }
 
-console.log(skinTypeID);
+  console.log(skinTypeID);
 
   const dataReturn = await Product.findAll({
     where: { skintype_id: user.skintype_id },
   });
 
   // console.log(dataReturn);
-  res.render("skin-results", { products: dataReturn, skinType:skinTypeID}, ); // pass in whatever data to the template
-  // Res.render(‘myTemplate’, { skin: value , {dry, oily, normal})
-  // OBJECT (data that we have made to post int he templating gengine
+  res.render("skin-results", { products: dataReturn, skinType: skinTypeID });
 });
-
-// shayma post the user comment
 
 router.post("/comment", async (req, res, next) => {
   let { name, title } = req.body;
@@ -118,61 +104,23 @@ router.post("/comment", async (req, res, next) => {
     name,
     title,
   });
-  res.redirect('/comment');
+  res.redirect("/comment");
   res.render("comment", {
     name: newComment.name,
     title: newComment.title,
   });
 });
 
-//POST Product to SQL Table //admin use only for posting
-// router.post('/products', async (req, res) => {
-//   const { brand, productName, ingredients, url } = req.body;
-//   const addItem = await Product.create({
-//     brand: brand,
-//     productName:productName,
-//     ingredients: ingredients,
-//     url:url
-//   });
-//   console.log("The new product is: " + addItem)
-//   res.json(addItem);
-// })
-
-// router.delete('/comment/:id', async (req, res) => {
-//   const { id } = req.params;
-//   const deletedUser = await Comments.destroy({
-//       where: {
-//           id
-//       }
-//   });
-//   res.json(deletedUser);
-// });
-
-//POST Product to SQL Table
-router.post("/products", async (req, res) => {
-  //Get product
-  router.get("/products", async function (req, res, next) {
-    const { brand, productName, ingredients, url } = req.body;
-    const addItem = await Product.findAll({
-      brand: brand,
-      productName: productName,
-      ingredients: ingredients,
-      url: url,
-    });
-    res.redirect("/profile");
-  });
-
-
 //trial 1 - updating username
-router.post('/users',isValidToken, async (req, res) => {
+router.post("/users", isValidToken, async (req, res) => {
   let { username } = req.body;
   const updatedUser = await User.update({
     where: {
-      username: username
-    }
+      username: username,
+    },
   });
-  console.log(updatedUser)
-  res.json('line 174', updatedUser);
+  console.log(updatedUser);
+  res.json("line 174", updatedUser);
 });
 
 //trial 2 - updating username
@@ -180,8 +128,8 @@ router.patch("/users/:username", (req, res) => {
   console.log("PATCH /user/:id");
   const username = req.params.username;
   console.log(taskID);
-  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`) //where id = 4;
-  res.json(`${username} has been updated`);//res.send(taskID);
+  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
+  res.json(`${username} has been updated`); //res.send(taskID);
 });
 
 module.exports = router;
