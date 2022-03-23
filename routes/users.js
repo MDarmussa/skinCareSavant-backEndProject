@@ -105,10 +105,7 @@ router.post("/comment", async (req, res, next) => {
     title,
   });
   res.redirect("/comment");
-  res.render("comment", {
-    name: newComment.name,
-    title: newComment.title,
-  });
+ 
 });
 
 //trial 1 - updating username
