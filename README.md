@@ -1,14 +1,14 @@
 
 Description:
 
-SkincareSavant is a back-end static responsive app that recommends the user skin product after completing a quiz of three questions. 
-After completing the quiz, the app will give the user his/her skin type (dry, normal, or oily). The user will also get a three different products to choose.
+      SkincareSavant is a back-end static responsive app that recommends the user skin product after completing a quiz of three questions. 
+      After completing the quiz, the app will give the user his/her skin type (dry, normal, or oily). The user will also get a three different products to choose.
 
-In order to complete the quiz, the user should register and login. To register, the form needs to be filled with the user information(name, email, username, password), and the login for contains (username and password).
+      In order to complete the quiz, the user should register and login. To register, the form needs to be filled with the user information(name, email, username, password), and the login for contains (username and password).
 
-After loging in, the user will be in his/her secure profile to do their own skin test. We have developed auth security for the user to keep their quiz result and recommended products in their profile. In other meaning, other users will not be able to see other users data as mentioned before.
+      After loging in, the user will be in his/her secure profile to do their own skin test. We have developed auth security for the user to keep their quiz result and recommended products in their profile. In other meaning, other users will not be able to see other users data as mentioned before.
 
-Users can make a comments as review, and those comments can be seen by others. Visitors can add a subject and a comments to be saved in ourdatabase and make it available to be seen.
+      Users can make a comments as review, and those comments can be seen by others. Visitors can add a subject and a comments to be saved in ourdatabase and make it available to be seen.
 
 
 
