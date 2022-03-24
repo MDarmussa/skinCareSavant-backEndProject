@@ -19,19 +19,19 @@ Users can make a comments as review, and those comments can be seen by others. V
 
 
 ---Technology Used---
-JavaScript, ejs, CSS, Bootstap, postgreSQL, Express.js, Sequelize.js
+- JavaScript, ejs, CSS, Bootstap, postgreSQL, Express.js, Sequelize.js
 
 
 ---Other Dev Tools and models---
-axios, bcrypt, cookie-parser, debug, dotenv, http-errors, jsonwebtoken, morgan, pg, @sequelize/core, ElephantSQL
+- axios, bcrypt, cookie-parser, debug, dotenv, http-errors, jsonwebtoken, morgan, pg, @sequelize/core, ElephantSQL
 
 
 ---APIs---
 
-https://skincare-api.herokuapp.com/products
-https://skincare-api.herokuapp.com/product?q=vitamin+c
-https://skincare-api.herokuapp.com/product?q=Glycolic+acid
-https://skincare-api.herokuapp.com/product?q=ISOPROPYL+MYRISTATE
+- https://skincare-api.herokuapp.com/products
+- https://skincare-api.herokuapp.com/product?q=vitamin+c
+- https://skincare-api.herokuapp.com/product?q=Glycolic+acid
+- https://skincare-api.herokuapp.com/product?q=ISOPROPYL+MYRISTATE
 
 
 
