@@ -1,44 +1,38 @@
 
 Description:
 
-      SkincareSavant is a back-end static responsive app that recommends the user skin product after completing a quiz
-	of three questions. After completing the quiz, the app will give the user his/her skin type (dry, normal, or oily).
-	The user will also get a three different products to choose.
+      SkincareSavant is a back-end static responsive app that recommends the user a skincare product after completing a three question quiz. After completing the quiz, the app will assign the user their skin type (dry, normal, or oily) and recommend them three different skincare products based on their specific skin need. 
 
-      In order to complete the quiz, the user should register and login. To register, the form needs to be filled with the 
-	user information(name, email, username, password), and the login for contains (username and password).
+      In order to complete the quiz, the user must register and login. To register, the form needs to be filled with the 
+	users information(name, email, username, password), and the login must contain the username and password.
 
-      After loging in, the user will be in his/her secure profile to do their own skin test. We have developed auth security 
-	for the user to keep their quiz result and recommended products in their profile. In other meaning, other users will not
-	be able to see other users data as mentioned before.
+      After loging in, the user will be in his/her secure profile to do complete their skin test. We have developed auth security 
+	for the user to keep their quiz result and recommendeded products in their profile. In this protected route, the users will not
+	be able to see other users data.
 
-      Users can make a comments as review, and those comments can be seen by others. Visitors can add a subject and a
-	comments to be saved in ourdatabase and make it available to be seen.
+     Once the products are recommended, the user can make a comments or provide a review on the product they were recommended.  Once the comment is made, it is saved in ourdatabase and will appear on the page for other users to see. 
 
 
 
 Goal:
 
-- collect questions from users that help them to identify their skin type
-- Rendering some products for users, the products have the name, brand, image, and ingredients
-- those data will be saved in their profile
+- Collect questions from users to help them identify their skin type
+- Rendering  products for users. These products will have the name, brand, image, and ingredients
+- Save user data in their profile
 
 
 Technology Used:
 
-- JavaScript, ejs, CSS, Bootstap, postgreSQL, Express.js, Sequelize.js
+- JavaScript, EJS, CSS, Bootstap, PostgreSQL, Express.js, Sequelize
 
 
 Other Dev Tools and models:
-- axios, bcrypt, cookie-parser, debug, dotenv, http-errors, jsonwebtoken, morgan, pg, @sequelize/core, ElephantSQL
+- bcrypt, cookie-parser, debug, dotenv, http-errors, jsonwebtoken, morgan, pg, ElephantSQL
 
 
 APIs:
 
-- https://skincare-api.herokuapp.com/products
-- https://skincare-api.herokuapp.com/product?q=vitamin+c
-- https://skincare-api.herokuapp.com/product?q=Glycolic+acid
-- https://skincare-api.herokuapp.com/product?q=ISOPROPYL+MYRISTATE
+- https://github.com/LauraRobertson/skincareAPI 
 
 
 
