@@ -18,6 +18,7 @@ router.get("/register", function (req, res, next) {
 router.get("/login", function (req, res, next) {
   res.render("login", { title: "Express" });
 });
+
 router.get("/logout", function (req, res, next) {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/login");
