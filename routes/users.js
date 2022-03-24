@@ -121,12 +121,34 @@ router.post("/comment", async (req, res, next) => {
 // });
 
 //trial 2 - updating username
-router.patch("/update/:username", (req, res) => {
-  console.log("PATCH /user/:id");
-  const username = req.params.username;
-  console.log(taskID);
-  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
-  res.json(`${username} has been updated`); //res.send(taskID);
+// router.put("name/:name,update/:username, email/:email", (req, res) => {
+//   console.log("PUT /user/:id");
+//   const username = req.params.username;
+//   console.log(taskID);
+//   User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
+//   res.json(`${username} has been updated`); //res.send(taskID);
+// });
+
+// update a user   WORKING
+router.put("/users/modify/:user_name", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  let UserName = req.params["user_name"];
+  await User.update(
+    {
+      userName: req.body.userName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      location: req.body.location,
+      role: req.body.role,
+    },
+    {
+      where: {
+        userName: UserName,
+      },
+    }
+  );
+  res.send('{"userRegistered": "true"}');
 });
 
 module.exports = router;
