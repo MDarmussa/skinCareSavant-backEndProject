@@ -11,7 +11,7 @@ After loging in, the user will be in his/her secure profile to do their own skin
 Users can make a comments as review, and those comments can be seen by others. Visitors can add a subject and a comments to be saved in ourdatabase and make it available to be seen.
 
 
----Goal---
+Goal:
 
 - collect questions from users that help them to identify their skin type
 - Rendering some products for users, the products have the name, brand, image, and ingredients
