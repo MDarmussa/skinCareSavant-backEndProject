@@ -86,7 +86,7 @@ linear-gradient(
 
 .moh {
     border-radius: 50%;
-    /* border: 4px solid rgba(19, 40, 238, 0.589); */
+    border: 4px solid rgba(230, 166, 216, 0.589);
     float:left;
     margin: 10px;
 }
@@ -100,11 +100,11 @@ linear-gradient(
 }
 
 .yuf {
+.uyvan {
     border-radius: 50%;
-    border: 4px solid rgba(19, 40, 238, 0.589);
+    border: 4px solid rgba(230, 166, 216, 0.589);
     float:left;
     margin: 10px;
-
 }
 
  h3 {
