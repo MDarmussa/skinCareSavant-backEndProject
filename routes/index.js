@@ -35,6 +35,17 @@ router.get("/comment", async function (req, res, next) {
   res.render("comment", { findallcomment: findallcomment });
 });
 
+router.get("/delete/:id", async function (req, res, next) {
+  const { id } = req.params;
+  const user = await User.findOne({
+    where: {
+      id: id,
+    },
+  });
+  res.render("comment");
+
+});
+
 //shayma - profile route -auth is work- middleware
 router.get("/profile/:id", async function (req, res, next) {
   const { id } = req.params;
@@ -57,5 +68,7 @@ router.get("skintype/:id", isValidToken, async (req, res, next) => {
   const products = await product.findAll({});
   res.render("profile", { user: user });
 });
+
+
 
 module.exports = router;

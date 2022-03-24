@@ -121,12 +121,15 @@ router.post("/comment", async (req, res, next) => {
 // });
 
 //trial 2 - updating username
-router.patch("/update/:username", (req, res) => {
-  console.log("PATCH /user/:id");
-  const username = req.params.username;
-  console.log(taskID);
-  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
-  res.json(`${username} has been updated`); //res.send(taskID);
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteComment = await Comments.destroy({
+    where : {
+      id
+    }
+  })
+  res.json("Comment Deleted", deleteComment);
 });
+
 
 module.exports = router;
