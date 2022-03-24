@@ -1,5 +1,5 @@
 
----Description---
+Description:
 
 SkincareSavant is a back-end static responsive app that recommends the user skin product after completing a quiz of three questions. 
 After completing the quiz, the app will give the user his/her skin type (dry, normal, or oily). The user will also get a three different products to choose.
@@ -11,6 +11,7 @@ After loging in, the user will be in his/her secure profile to do their own skin
 Users can make a comments as review, and those comments can be seen by others. Visitors can add a subject and a comments to be saved in ourdatabase and make it available to be seen.
 
 
+
 Goal:
 
 - collect questions from users that help them to identify their skin type
@@ -18,15 +19,16 @@ Goal:
 - those data will be saved in their profile
 
 
----Technology Used---
+Technology Used:
+
 - JavaScript, ejs, CSS, Bootstap, postgreSQL, Express.js, Sequelize.js
 
 
----Other Dev Tools and models---
+Other Dev Tools and models:
 - axios, bcrypt, cookie-parser, debug, dotenv, http-errors, jsonwebtoken, morgan, pg, @sequelize/core, ElephantSQL
 
 
----APIs---
+APIs:
 
 - https://skincare-api.herokuapp.com/products
 - https://skincare-api.herokuapp.com/product?q=vitamin+c
@@ -35,7 +37,7 @@ Goal:
 
 
 
----Contributors---
+Contributors:
 
 - Shayma Alkhafaf
 - Rashida Otunba
