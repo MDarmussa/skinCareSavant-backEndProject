@@ -38,6 +38,7 @@ router.post("/login", async (req, res, next) => {
       username: username,
     },
   });
+  //console.log("user js line 41",user)
   if (user) {
     const comparePass = bcrypt.compareSync(password, user.password);
     if (comparePass === true) {
@@ -130,25 +131,26 @@ router.post("/comment", async (req, res, next) => {
 // });
 
 // update a user   WORKING
-router.put("/users/modify/:user_name", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  let UserName = req.params["user_name"];
-  await User.update(
+router.post("/update", async (req, res) => {
+  const {name, username, email, password} = req.body
+  const id = Number(req.body.id) 
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+  console.log(req.body, "user line 137")
+  const user = await User.update(
     {
-      userName: req.body.userName,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      location: req.body.location,
-      role: req.body.role,
+      name: name,
+      username: username, 
+      password: hashedPassword,
+      email: email,
     },
     {
       where: {
-        userName: UserName,
+        id: id
       },
     }
   );
-  res.send('{"userRegistered": "true"}');
+  console.log(user.id, "user 151")
+    res.redirect(`/userprofile/${user.id}`)
 });
 
 module.exports = router;
