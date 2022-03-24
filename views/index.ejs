@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('partials/indexHead') -%>
-  </head>
 
-  <body>
-        <nav class="navbar navbar-expand-sm navbar-light bg" style="background-color: #c776af50"  >
-          <div class="container-fluid " id="navigation">
-          <a class="navbar-brand " href="/">SkincareSavant</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/about">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log In</a>
-            </li>			
-            </ul>		  
-          </div>
-          </div>
-        </nav>
+<head>
+  <%- include('partials/indexHead') -%>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg" style="background-color: #c776af50">
+    <div class="container-fluid " id="navigation">
+      <a class="navbar-brand " href="/">SkincareSavant</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a id="navMenu1" class="nav-link" target="_blank" href="https://github.com/MDarmussa/skincareSavant-beProject">See Code</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
-      </nav>
-    <div class="container">
-      <!-- <%- include('partials/home-nav') %> -->
-      <div id="main-container">
-        <div class="row">
-          <div class="col">
-          </div>
+  </nav>
+  <div class="container">
+    <!-- <%- include('partials/home-nav') %> -->
+    <div id="main-container">
+      <div class="row">
+        <div class="col">
         </div>
-        <div class="row">
-          <div class="col">
-            <h1>Welcome To SkincareSavant</h1><br>
-            <div class="row">
-              <h3>your one-stop shop for all things skincare</h3>
-            </div>
-          </div>
-        </div>
-        <br><br>
-        <div class="row" id="submit-button-div">
+      </div>
+      <div class="row">
+        <div class="col">
+          <h1>Welcome To SkincareSavant</h1><br>
           <div class="row">
-            <div class="col text-center">
-              <a href="/login" id="submit-button" class="btn btn-dark">
-                Find Your Skin Type
-              </a>
-            </div>  
+            <h3>your one-stop shop for all things skincare</h3>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <div class="row" id="submit-button-div">
+        <div class="row">
+          <div class="col text-center">
+            <a href="/login" id="submit-button" class="btn btn-dark">
+              Find Your Skin Type
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

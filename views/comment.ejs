@@ -4,64 +4,83 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  
+  
 
     <title>Document</title>
   </head>
   <body>
-      <h1> How would you rate Skincare? </h1>
-      <h4>Leave your comment below</h4>
+    <!-- navbar section -->
+    <nav class="navbar navbar-expand-sm navbar-light bg" style="background-color: #c776af50"  >
+      <div class="container-fluid " id="navigation">
+      <a class="navbar-brand " href="/">SkincareSavant</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Logout</a>
+        </li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+  </nav>
+      <h1> Want to tell us what you think about a product? </h1>
+      <h4>Share your honest review with us!</h4>
 
-    <div class="container pt-5">
-      <div class="container">
-          <form action="/users/comment" method="POST">
+<body>
+
+  <div class="container pt-5">
+    <div class="container">
+      <form action="/users/comment" method="POST">
         <div class="form-group">
-            <label>
-                
-                <input type="name" class="form-control" placeholder="Subject" aria-label="First name"  name="name" />
-                <br/>
-              </label> 
-          <textarea
-            class="form-control rounded-0"
-            placeholder="Leave a comment here" rows="4"  name="title"
-          ></textarea>
+          <label>
+
+            <input type="name" class="form-control" placeholder="Subject" aria-label="First name" name="name" />
+            <br />
+          </label>
+          <textarea class="form-control rounded-0" placeholder="Leave a comment here" rows="4" name="title"></textarea>
         </div>
         <div class="form-group pt-2">
-        <button type="submit" class="btn btn-dark ">Add Comments</button>
+          <button type="submit" class="btn btn-dark ">Add Comments</button>
         </div>
-        </form>
-      </div>
+      </form>
     </div>
-    <br/>
+  </div>
+  <br />
 
-    <div class="contaner pt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <% findallcomment.forEach(comment => { %>
-              <br>
-              <p><strong><%= comment.name %>:
-                        <span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-              </strong>
-          <br/>
-          <%= comment.title %> 
-          <!-- <br/> <br/> <br/>
-          <i class="fa fa-thumbs-down">0</i>
-          <i class="fa fa-thumbs-up">0</i> -->
-
+  <div class="contaner pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <% findallcomment.forEach(comment => { %>
+          <br>
+          <p><strong><%= comment.name %>:
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+            </strong>
+            <br />
+            <%= comment.title %>
             <% }) %>
-            <br/> <br/> <br/>
+            <br /> <br /> <br />
             <i class="fa fa-thumbs-down">0</i>
             <i class="fa fa-thumbs-up">0</i>
-            </p>
+          </p>
         </div>
 
-  </body>
+</body>
+
 </html>
