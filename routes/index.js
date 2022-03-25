@@ -35,6 +35,23 @@ router.get("/comment", async function (req, res, next) {
   res.render("comment", { findallcomment: findallcomment });
 });
 
+// delete route 
+
+router.get("/comment/:id", function (req, res, next) {
+  res.render("/comment/:id");
+});
+
+// router.delete("/comment/:id", async (req, res) => {
+//   Comments.findByIdAndDelete(req.params.id, (err) => {
+//     if (err){
+//       console.log(err);
+//     } else {
+//       res.redirect('/comment');
+//     }
+//   });
+// });
+
+
 //shayma - profile route -auth is work- middleware
 router.get("/profile/:id", async function (req, res, next) {
   const { id } = req.params;
