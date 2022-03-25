@@ -38,6 +38,7 @@ router.post("/login", async (req, res, next) => {
       username: username,
     },
   });
+  //console.log("user js line 41",user)
   if (user) {
     const comparePass = bcrypt.compareSync(password, user.password);
     if (comparePass === true) {
@@ -121,12 +122,35 @@ router.post("/comment", async (req, res, next) => {
 // });
 
 //trial 2 - updating username
-router.patch("/update/:username", (req, res) => {
-  console.log("PATCH /user/:id");
-  const username = req.params.username;
-  console.log(taskID);
-  User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
-  res.json(`${username} has been updated`); //res.send(taskID);
+// router.put("name/:name,update/:username, email/:email", (req, res) => {
+//   console.log("PUT /user/:id");
+//   const username = req.params.username;
+//   console.log(taskID);
+//   User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
+//   res.json(`${username} has been updated`); //res.send(taskID);
+// });
+
+// update a user   WORKING
+router.post("/update", async (req, res) => {
+  const {name, username, email, password} = req.body
+  const id = Number(req.body.id) 
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+  console.log(req.body.id, "user line 137")
+  const user = await User.update(
+    {
+      name: name,
+      username: username, 
+      password: hashedPassword,
+      email: email,
+    },
+    {
+      where: {
+        id: id
+      },
+    }
+  );
+
+    res.redirect(`/userprofile/${req.body.id}`)
 });
 
 module.exports = router;

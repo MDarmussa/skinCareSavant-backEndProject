@@ -44,7 +44,8 @@ router.get("/profile/:id", async function (req, res, next) {
     },
   });
   console.log(user);
-  res.render("profile", { name: user.username });
+  res.render("profile", { name: user.username, id: id });
+   
 });
 
 router.get("skintype/:id", isValidToken, async (req, res, next) => {
@@ -54,8 +55,21 @@ router.get("skintype/:id", isValidToken, async (req, res, next) => {
       id: id,
     },
   });
+
   const products = await product.findAll({});
-  res.render("profile", { user: user });
+
+  res.render("profile", { user: user, id: id });
+});
+
+router.get("/userprofile/:id", isValidToken, async function (req, res, next) {
+  const { id } = req.params;
+  const user = await User.findOne({
+    where: {
+      id: id,
+    },
+  });
+  console.log(user);
+  res.render("userprofile", { id: id , name: user.name, username: user.username, email: user.email});
 });
 
 module.exports = router;
