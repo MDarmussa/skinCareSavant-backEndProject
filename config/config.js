@@ -1,10 +1,11 @@
-{
+require('dotenv').config();
+module.exports= {
   "development": {
-    "username": "wlwxoiia",
-    "password": "TYqwUfLhsdU24smMcjGocV49v_L4XI5G",
-    "database": "wlwxoiia",
-    "host": "hansken.db.elephantsql.com",
-    "dialect": "postgres"
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": process.env.DB_DIALECT
   },
   "test": {
     "username": "root",
