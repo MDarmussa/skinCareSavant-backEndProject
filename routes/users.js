@@ -135,7 +135,7 @@ router.post("/update", async (req, res) => {
   const {name, username, email, password} = req.body
   const id = Number(req.body.id) 
   const hashedPassword = bcrypt.hashSync(password, saltRounds);
-  console.log(req.body, "user line 137")
+  console.log(req.body.id, "user line 137")
   const user = await User.update(
     {
       name: name,
@@ -149,8 +149,8 @@ router.post("/update", async (req, res) => {
       },
     }
   );
-  console.log(user.id, "user 151")
-    res.redirect(`/userprofile/${user.id}`)
+
+    res.redirect(`/userprofile/${req.body.id}`)
 });
 
 module.exports = router;
