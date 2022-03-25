@@ -108,6 +108,22 @@ router.post("/comment", async (req, res, next) => {
  
 });
 
+// delete route
+//   router.delete('/comment/:id', (req, res) => {
+//     console.log("DELETE /comment/:id");
+//     const deletedID = req.params.id;
+//     console.log("comment ID deleted", deletedID);
+//     db.none(`DELETE FROM comment WHERE id = ${deletedID};`)
+//     res.send(deletedID)
+//     // res.redirect("/comment");
+
+// });
+ 
+
+  
+
+
+
 //trial 1 - updating username
 // router.post("/users", isValidToken, async (req, res) => {
 //   let { username } = req.body;
