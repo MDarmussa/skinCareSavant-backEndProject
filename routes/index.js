@@ -41,18 +41,8 @@ router.get("/comment/:id", function (req, res, next) {
   res.render("/comment/:id");
 });
 
-// router.delete("/comment/:id", async (req, res) => {
-//   Comments.findByIdAndDelete(req.params.id, (err) => {
-//     if (err){
-//       console.log(err);
-//     } else {
-//       res.redirect('/comment');
-//     }
-//   });
-// });
 
-
-//shayma - profile route -auth is work- middleware
+//profile route -auth is work- middleware
 router.get("/profile/:id", async function (req, res, next) {
   const { id } = req.params;
   const user = await User.findOne({
