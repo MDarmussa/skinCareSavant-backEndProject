@@ -109,43 +109,6 @@ router.post("/comment", async (req, res, next) => {
  
 });
 
-// delete route
-//   router.delete('/comment/:id', (req, res) => {
-//     console.log("DELETE /comment/:id");
-//     const deletedID = req.params.id;
-//     console.log("comment ID deleted", deletedID);
-//     db.none(`DELETE FROM comment WHERE id = ${deletedID};`)
-//     res.send(deletedID)
-//     // res.redirect("/comment");
-
-// });
- 
-
-  
-
-
-
-//trial 1 - updating username
-// router.post("/users", isValidToken, async (req, res) => {
-//   let { username } = req.body;
-//   const updatedUser = await User.update({
-//     where: {
-//       username: username,
-//     },
-//   });
-//   console.log(updatedUser);
-//   res.json("line 174", updatedUser);
-// });
-
-//trial 2 - updating username
-// router.put("name/:name,update/:username, email/:email", (req, res) => {
-//   console.log("PUT /user/:id");
-//   const username = req.params.username;
-//   console.log(taskID);
-//   User.none(`UPDATE tasks SET is_completed = true WHERE username = ${userID};`); //where id = 4;
-//   res.json(`${username} has been updated`); //res.send(taskID);
-// });
-
 // update a user   WORKING
 router.post("/update", async (req, res) => {
   const {name, username, email, password} = req.body
