@@ -13,6 +13,8 @@ Description:
      Once the products are recommended, the user can make a comments or provide a review on the product they were recommended.  Once the comment is made, it is saved in ourdatabase and will appear on the page for other users to see. 
 
 
+Demo username / password:
+admin / admin
 
 Goal:
 
